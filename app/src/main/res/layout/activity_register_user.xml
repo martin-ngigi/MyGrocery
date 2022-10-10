@@ -55,18 +55,7 @@
         android:layout_marginBottom="20dp"
         android:layout_centerHorizontal="true"/>
 
-<!--    <com.blogspot.atifsoftwares.circularimageview.CircularImageView-->
-<!--        android:id="@+id/profileIvRU"-->
-<!--        android:src="@drawable/ic_person_green"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="100dp"-->
-<!--        android:layout_below="@id/iconIvRU"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        app:c_border="true"-->
-<!--        app:c_border_color="@color/background"-->
-<!--        app:c_border_width="2dp"-->
-<!--        />-->
-    <de.hdodenhof.circleimageview.CircleImageView
+    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
         android:id="@+id/profileIvRU"
         android:src="@drawable/ic_person_green"
         android:layout_width="100dp"
@@ -77,6 +66,17 @@
         app:c_border_color="@color/background"
         app:c_border_width="2dp"
         />
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/profileIvRU"-->
+<!--        android:src="@drawable/ic_person_green"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_below="@id/iconIvRU"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        app:c_border="true"-->
+<!--        app:c_border_color="@color/background"-->
+<!--        app:c_border_width="2dp"-->
+<!--        />-->
 
 
 

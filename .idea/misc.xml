@@ -7,10 +7,16 @@
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_forgot_password.xml" value="0.1140625" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login.xml" value="0.14" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main_seller.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main_seller.xml" value="0.16" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main_user.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_register_seller.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_register_user.xml" value="0.16041666666666668" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_splash.xml" value="0.128125" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/bs_product_details_seller.xml" value="0.18125" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/row_order_seller.xml" value="0.15572916666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/row_order_user.xml" value="0.18072916666666666" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/row_products_seller.xml" value="0.15572916666666667" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/row_shop.xml" value="0.18125" />
       </map>
     </option>
   </component>

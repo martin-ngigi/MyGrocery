@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Bottom Sheet layout to display product details and edit/delete-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <!---->
+    <RelativeLayout
+        android:id="@+id/toolbarRl"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/shape_rect01"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/backBtnBSS"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back_white"
+            android:background="@color/background"/>
+
+        <ImageButton
+            android:id="@+id/deleteBtnBSS"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_delete_white"
+            android:layout_alignParentEnd="true"
+            android:background="@color/background"
+            android:layout_alignParentRight="true" />
+
+        <ImageButton
+            android:id="@+id/editBtnBSS"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_edit_white"
+            android:layout_toStartOf="@id/deleteBtnBSS"
+            android:background="@color/background"
+            android:layout_toLeftOf="@id/deleteBtnBSS" />
+
+        <TextView
+            android:id="@+id/nameTvBSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Details"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/white"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_marginTop="2dp"
+            />
+
+    </RelativeLayout>
+
+
+    <ImageView
+        android:id="@+id/productIconIvBSS"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:layout_below="@+id/toolbarRl"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_baseline_add_shopping_cart_24_green"
+        android:layout_marginRight="5dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productIconIvBSS"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/discountedNoteTvBSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rect05"
+            android:padding="5dp"
+            android:text="105 OFF"
+            android:textColor="#1F9124"/>
+
+        <TextView
+            android:id="@+id/titleTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Title"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/descriptionTvBSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Description "
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/categoryTvBSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Category "
+            android:textColor="#000"/>
+
+        <TextView
+            android:id="@+id/quantityTvBSS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="1Kg "
+            android:textColor="#000"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/ksh1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ksh"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/discountedPriceTvBSS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="450"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@+id/ksh1"
+                android:textColor="#000"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@+id/ksh1" />
+
+            <TextView
+                android:id="@+id/ksh2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ksh"
+                android:layout_toEndOf="@+id/discountedPriceTvBSS"
+                android:textColor="#000"
+                android:layout_toRightOf="@+id/discountedPriceTvBSS" />
+
+            <TextView
+                android:id="@+id/originalPriceTvBSS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="500"
+                android:layout_toEndOf="@id/ksh2"
+                android:textColor="#000"
+                android:layout_toRightOf="@id/discountedPriceTvBSS" />
+
+
+        </RelativeLayout>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</RelativeLayout>

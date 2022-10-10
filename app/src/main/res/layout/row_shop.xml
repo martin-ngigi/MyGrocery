@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    android:layout_marginBottom="1dp"
+    app:contentPadding="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F0F3D7">
+
+        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/shopIvRS"
+            android:src="@drawable/ic_store_gray"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="5dp"
+            app:c_border="true"
+            app:c_border_color="@color/black"
+            app:c_border_width="2dp"
+            android:layout_marginRight="5dp" />
+
+        <!--online/offline status -->
+        <ImageView
+            android:id="@+id/onlineIvRS"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/shape_circle03"
+            />
+
+        <TextView
+            android:id="@+id/shopClosedTVRS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/nextIvRS"
+            android:layout_toLeftOf="@id/nextIvRS"
+            android:padding="5dp"
+            android:text="Closed"
+            android:textColor="@color/black"
+            android:background="@drawable/shape_rect06"
+
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_toStartOf="@id/nextIvRS"
+            android:layout_toEndOf="@id/shopIvRS"
+            android:layout_toLeftOf="@id/nextIvRS"
+            android:layout_toRightOf="@id/shopIvRS">
+
+            <TextView
+                android:id="@+id/shopNameTvRS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shop Name"
+                android:maxLines="1"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/phoneTvRS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/addressTvRS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:layout_marginTop="3dp"
+                android:textColor="@color/black"/>
+
+            <RatingBar
+                android:id="@+id/ratingBarRS"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:numStars="5"
+                android:rating="3.5"
+                android:layout_gravity="end"
+                />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/nextIvRS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_next_gray"
+            android:layout_marginRight="5dp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

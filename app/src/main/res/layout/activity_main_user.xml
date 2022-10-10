@@ -1,9 +1,227 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Activities.MainUserActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--tool bar-->
+    <RelativeLayout
+        android:id="@+id/toolbarMU"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:background="@drawable/shape_rect01">
+
+
+        <ImageButton
+            android:id="@+id/logoutMU"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_logout_white"
+            android:layout_alignParentEnd="true"
+            android:background="@color/background"
+            android:layout_alignParentRight="true" />
+
+        <ImageButton
+            android:id="@+id/editProfileMU"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_edit_white"
+            android:layout_toStartOf="@+id/logoutMU"
+            android:background="@color/background"
+            android:layout_toLeftOf="@+id/logoutMU" />
+
+        <!--settings : settings Button-->
+        <ImageButton
+            android:id="@+id/settingsBtnMU"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_settings_white"
+            android:background="@color/background"
+            android:layout_toStartOf="@id/editProfileMU"
+            android:layout_toLeftOf="@id/editProfileMU" />
+
+
+        <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+            android:id="@+id/profileIvMU"
+            android:src="@drawable/ic_person_green"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            app:c_border="true"
+            app:c_border_color="@color/black"
+            app:c_border_width="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp" />
+
+        <TextView
+            android:id="@+id/nameTvMU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name Seller"
+            android:layout_toEndOf="@id/profileIvMU"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/profileIvMU" />
+
+        <TextView
+            android:id="@+id/emailTvMU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:layout_toEndOf="@id/profileIvMU"
+            android:layout_below="@id/nameTvMU"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/profileIvMU" />
+
+        <TextView
+            android:id="@+id/phoneTvMU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone"
+            android:layout_toEndOf="@id/profileIvMU"
+            android:layout_below="@id/emailTvMU"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/profileIvMU" />
+
+        <!--Tabs; Products, Orders-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/shape_rect03"
+            android:layout_below="@+id/profileIvMU">
+
+            <!--Shops-->
+            <TextView
+                android:id="@+id/tabShopsTvMU"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Shops"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/shape_rect04"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+
+            <!--orders-->
+            <TextView
+                android:id="@+id/tabOrdersTvMU"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Orders"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                android:background="@drawable/shape_rect00"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <!--Shops UI-->
+    <!--Shops UI lies on top of "Orders Ui, when user presses oderTv, the the shops UI becomes invisible and vice versa"-->
+    <RelativeLayout
+        android:id="@+id/shopsRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarMU">
+
+        <LinearLayout
+            android:id="@+id/LL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                android:id="@+id/allShopsTvMU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Shops"
+                android:layout_marginLeft="5dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableEnd="@drawable/ic_gps_maroon"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/ic_gps_maroon" />
+
+            <TextView
+                android:id="@+id/localShopsTvMU"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In my city Shops"
+                android:layout_marginLeft="5dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_rect02"
+                android:drawableEnd="@drawable/ic_gps_maroon"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/ic_gps_maroon" />
+
+
+
+        </LinearLayout>
+
+        <!--RecyclerView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/shopsRV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/LL"
+            android:layout_marginTop="-1dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_shop" />
+
+
+    </RelativeLayout>
+
+
+    <!--orders UI-->
+    <RelativeLayout
+        android:id="@+id/ordersRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbarMU"
+        android:visibility="gone"
+        >
+
+        <!--RecyclerView to show orders(newest first)-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ordersRVMU"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:stackFromEnd="true"
+            app:reverseLayout="true"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_order_user" />
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

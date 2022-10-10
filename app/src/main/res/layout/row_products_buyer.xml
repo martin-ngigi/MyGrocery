@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    android:layout_marginBottom="1dp"
+    app:contentPadding="5dp">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_rect02">
+
+        <ImageView
+            android:id="@+id/productIconIvRB"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_baseline_add_shopping_cart_24_green"
+            android:layout_marginRight="5dp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginLeft="6dp"
+            android:layout_toEndOf="@+id/productIconIvRB"
+            android:layout_toRightOf="@+id/productIconIvRB"
+            android:layout_toStartOf="@+id/nextIvRB"
+            android:layout_toLeftOf="@+id/nextIvRB">
+
+            <TextView
+                android:id="@+id/discountedNoteTvRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/shape_rect05"
+                android:padding="5dp"
+                android:text="10% OFF"
+                android:textColor="#1F9124"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/titleTvRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:padding="5dp"
+                android:text="Title"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/descriptionTvRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/titleTvRB"
+                android:maxLines="2"
+                android:minLines="2"
+                android:padding="5dp"
+                android:text="Description"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/addToCartTvRB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/descriptionTvRB"
+                android:drawableStart="@drawable/ic_shopping_cart_gray"
+                android:drawableLeft="@drawable/ic_shopping_cart_gray"
+                android:gravity="center"
+                android:padding="5dp"
+                android:background="@drawable/shape_rect02"
+                android:text="Add to cart"
+                android:textColor="#062BFB" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addToCartTvRB"
+                android:layout_marginTop="5dp"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/ksh1RB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Ksh"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/discountedPriceTvRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toEndOf="@id/ksh1RB"
+                    android:layout_toRightOf="@id/ksh1RB"
+                    android:padding="5dp"
+                    android:text="450"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/ksh2RB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/discountedPriceTvRB"
+                    android:layout_toRightOf="@id/discountedPriceTvRB"
+                    android:padding="5dp"
+                    android:text="Ksh"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/originalPriceTvRB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/ksh2RB"
+                    android:layout_toRightOf="@id/discountedPriceTvRB"
+                    android:padding="5dp"
+                    android:text="500"
+                    android:textColor="#000" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/nextIvRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_next_gray"
+            android:layout_marginRight="5dp" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

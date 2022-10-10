@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="2dp"
+    android:background="@color/white"
+    android:padding="3dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:padding="3dp"
+        >
+
+        <TextView
+            android:id="@+id/orderIdTvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order : 12345"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/orderDateTvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13/11/2021"
+            android:textColor="@color/black"
+            android:layout_toStartOf="@id/nextIvS"
+            android:layout_toLeftOf="@id/emailTvS" />
+
+        <TextView
+            android:id="@+id/emailTvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email of the user"
+            android:textColor="@color/black"
+            android:layout_below="@id/orderIdTvS"
+
+            />
+
+        <TextView
+            android:id="@+id/amountTvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total amount : 100 Ksh"
+            android:textColor="@color/black"
+            android:layout_below="@id/emailTvS"
+            />
+
+
+        <ImageView
+            android:id="@+id/nextIvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next_gray"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/statusTvS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery in Progress"
+            android:textColor="@color/background"
+            android:layout_marginTop="5dp"
+
+            android:layout_below="@id/emailTvS"
+            android:layout_toStartOf="@+id/nextIvS"
+            android:layout_toLeftOf="@+id/nextIvS" />
+
+
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

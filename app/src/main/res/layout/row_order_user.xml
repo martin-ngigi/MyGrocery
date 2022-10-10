@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="3dp"
+    app:cardCornerRadius="5dp"
+    android:layout_marginBottom="2dp"
+    android:background="@color/white"
+    android:padding="3dp"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="@color/white"
+        android:padding="3dp"
+        >
+
+        <TextView
+            android:id="@+id/orderIdTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Order : 12345"
+            android:textColor="@color/black"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/dateTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="13/11/2021"
+            android:textColor="@color/black"
+            android:layout_toStartOf="@id/nextIv"
+            android:layout_toLeftOf="@id/shopNameTv" />
+
+        <TextView
+            android:id="@+id/shopNameTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Martin's Shop"
+            android:textColor="@color/black"
+            android:layout_below="@id/orderIdTv"
+
+            />
+
+
+        <TextView
+            android:id="@+id/amountTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total amount : 100 Ksh"
+            android:textColor="@color/black"
+            android:layout_below="@id/shopNameTv"
+            />
+
+
+        <TextView
+            android:id="@+id/statusTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delivery in Progress"
+            android:textColor="@color/background"
+            android:layout_marginTop="5dp"
+
+            android:layout_below="@id/shopNameTv"
+            android:layout_toStartOf="@+id/nextIv"
+            android:layout_toLeftOf="@+id/nextIv" />
+
+        <ImageView
+            android:id="@+id/nextIv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_next_gray"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            />
+
+
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>
