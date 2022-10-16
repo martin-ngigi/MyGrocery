@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Order to"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal" />
+
+        <TextView
+            android:id="@+id/shopNameDC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Shop Name"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:textAlignment="center"
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/white"
+            android:textColor="@color/black"
+            android:gravity="center_horizontal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/black"
+
+            />
+
+        <!--RecyclerView-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartItemsRvDC"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rect02"
+            android:padding="5dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/row_cart_items"
+            />
+
+        <RelativeLayout
+            android:id="@+id/priceLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/subTotalLabelTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Sub Total"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/subTotalTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ksh 500"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/deliveryFeeLabelTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Delivery Fee"
+                android:textStyle="bold"
+                android:layout_below="@id/subTotalLabelTvDC"
+                android:textColor="@color/black"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/deliveryFeeTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ksh 300"
+                android:textStyle="bold"
+                android:layout_below="@+id/subTotalTvDC"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+            <TextView
+                android:id="@+id/totalLabelTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Total Price"
+                android:textStyle="bold"
+                android:layout_below="@id/deliveryFeeLabelTvDC"
+                android:textColor="@color/black"
+                android:background="@color/white"/>
+
+            <TextView
+                android:id="@+id/totalTvDC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Ksh 800"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_below="@id/deliveryFeeTvDC"
+                android:background="@color/white"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true" />
+
+
+
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/checkOutBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirm Order"
+            android:padding="5dp"
+            android:textAllCaps="false"
+            android:layout_margin="15dp"
+            />
+
+
+
+    </LinearLayout>
+
+</ScrollView>

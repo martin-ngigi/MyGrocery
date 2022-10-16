@@ -18,8 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-//import com.example.mygrocery.FilterProducts;
-//import com.example.mygrocery.Activities.EditProductActivity;
+import com.example.mygrocery.Activities.EditProductActivity;
 import com.example.mygrocery.FilterProducts;
 import com.example.mygrocery.Models.ModelProduct;
 import com.example.mygrocery.R;
@@ -203,13 +202,11 @@ public class AdapterProductSeller extends RecyclerView.Adapter<AdapterProductSel
         editBtnBSS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
                 //open edit product activity
                 bottomSheetDialog.dismiss();
                 Intent intent = new Intent(context, EditProductActivity.class);
                 intent.putExtra("productId", id); // pass productId to EditActivity
                 context.startActivity(intent);
-                 **/
             }
         });
 

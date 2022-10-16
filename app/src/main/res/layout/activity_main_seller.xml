@@ -131,7 +131,7 @@
                 android:background="@drawable/shape_rect04"
                 android:textColor="@color/black"
                 android:textStyle="bold"
-                />
+                 />
 
             <!--orders-->
             <TextView

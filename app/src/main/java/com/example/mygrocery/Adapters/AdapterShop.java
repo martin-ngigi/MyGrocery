@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**import com.example.mygrocery.Activities.ShopDetailsActivity;**/
+import com.example.mygrocery.Activities.ShopDetailsActivity;
 import com.example.mygrocery.Models.ModelProduct;
 import com.example.mygrocery.Models.ModelShop;
 import com.example.mygrocery.R;
@@ -109,11 +109,9 @@ public class AdapterShop extends RecyclerView.Adapter<AdapterShop.HolderShop>{
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /**
                 Intent intent = new Intent(context, ShopDetailsActivity.class);
                 intent.putExtra("shopUid", uid);
                 context.startActivity(intent);
-                 **/
             }
         });
 

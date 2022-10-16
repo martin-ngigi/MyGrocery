@@ -138,19 +138,15 @@ public class MainSellerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open edit profile activity
-                /**
                 startActivity(new Intent(MainSellerActivity.this, ProfileEditSellerActivity.class));
-                 **/
-                 }
+            }
         });
 
         addProductBtnMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //open edit AddProduct activity
-                /**
                 startActivity(new Intent(MainSellerActivity.this, AddProductActivity.class));
-                 **/
             }
         });
 
@@ -229,18 +225,16 @@ public class MainSellerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open Reviews activity
-                /**
                 Intent intent = new Intent(MainSellerActivity.this, ShopReviewsActivity.class);
                 intent.putExtra("shopUid", ""+firebaseAuth.getUid());
                 startActivity(intent);
-                 **/
             }
         });
 
         settingsBtnMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainSellerActivity.this, SettingsActivity.class));
+                startActivity(new Intent(MainSellerActivity.this, SettingsActivity.class));
             }
         });
 

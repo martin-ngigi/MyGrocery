@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/itemTitleTvRC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Item Title"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:background="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/itemPriceEachTvRC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100 Ksh"
+        android:layout_below="@+id/itemTitleTvRC"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:background="@color/white"
+
+        />
+
+    <TextView
+        android:id="@+id/itemQuantityTvRC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="[2]"
+        android:layout_toEndOf="@+id/itemPriceEachTvRC"
+        android:textColor="@color/black"
+        android:padding="5dp"
+        android:background="@color/white"
+        android:layout_below="@id/itemTitleTvRC"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@+id/itemPriceEachTvRC" />
+
+    <LinearLayout
+        android:id="@+id/Ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/itemTitleTvRC"
+        android:layout_centerHorizontal="true"        >
+
+        <TextView
+            android:id="@+id/itemPriceTvRC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="100 Ksh"
+            android:textColor="@color/black"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/white"
+            android:layout_gravity="center"
+            />
+
+
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/itemRemoveTvRC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:textColor="#FD0707"
+        android:layout_alignParentEnd="true"
+        android:padding="5dp"
+        android:layout_below="@id/itemTitleTvRC"
+        android:background="@drawable/shape_rect02"
+        android:layout_alignParentRight="true" />
+
+    <View
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/background"
+        android:layout_below="@+id/Ll"
+
+        />
+
+
+
+</RelativeLayout>

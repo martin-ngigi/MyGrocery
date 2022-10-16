@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/drawable/ic_add_gray.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_add_product.xml" value="0.15364583333333334" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_edit_product.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_forgot_password.xml" value="0.1140625" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login.xml" value="0.14" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main.xml" value="0.1" />

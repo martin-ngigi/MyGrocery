@@ -13,7 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-//import com.example.mygrocery.Activities.OrderDetailsSellerActivity;
+import com.example.mygrocery.Activities.OrderDetailsSellerActivity;
 import com.example.mygrocery.FilterOrderShop;
 import com.example.mygrocery.Models.ModelOrderShop;
 import com.example.mygrocery.R;
@@ -88,12 +88,10 @@ public class AdapterOrderShop extends RecyclerView.Adapter<AdapterOrderShop.Hold
             @Override
             public void onClick(View v) {
                 //open Order Details Activity, we need two keys: orderTo,orderId
-                /**
                 Intent intent = new Intent(context, OrderDetailsSellerActivity.class);
                 intent.putExtra("orderId", orderId);
                 intent.putExtra("orderBy", orderBy);
                 context.startActivity(intent);//after passing values to OrderDetails, get values using intent
-                 **/
             }
         });
 

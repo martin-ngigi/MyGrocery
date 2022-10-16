@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Activities.RegisterUserActivity">
+    tools:context=".Activities.ProfileEditUserActivity">
 
     <!--tool bar-->
     <RelativeLayout
+        android:id="@+id/toolbarPU"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:padding="10dp"
@@ -17,7 +18,7 @@
 
 
         <ImageButton
-            android:id="@+id/backBtnRU"
+            android:id="@+id/backBtnPU"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_back_white"
@@ -26,7 +27,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register User"
+            android:text="Edit Profile"
             android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:textSize="25dp"
@@ -34,7 +35,7 @@
             />
 
         <ImageButton
-            android:id="@+id/gpsBtnRU"
+            android:id="@+id/gpsBtnPU"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/ic_gps_white"
@@ -42,25 +43,15 @@
             android:background="@color/background"
             android:layout_alignParentRight="true" />
 
+
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iconIvRU"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/shape_circle01"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_key_white"
-        android:padding="5dp"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true"/>
-
     <com.blogspot.atifsoftwares.circularimageview.CircularImageView
-        android:id="@+id/profileIvRU"
+        android:id="@+id/profileIvPU"
         android:src="@drawable/ic_person_green"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_below="@id/iconIvRU"
+        android:layout_below="@id/toolbarPU"
         android:layout_centerHorizontal="true"
         app:c_border="true"
         app:c_border_color="@color/background"
@@ -68,7 +59,7 @@
         />
 
     <EditText
-        android:id="@+id/nameEtRU"
+        android:id="@+id/nameEtPU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -77,14 +68,14 @@
         android:textColorHint="@color/black"
         android:textColor="@color/black"
         android:padding="5dp"
-        android:layout_below="@id/profileIvRU"
+        android:layout_below="@id/profileIvPU"
         android:drawableStart="@drawable/ic_person_gray"
         android:drawableLeft="@drawable/ic_person_gray"
         android:inputType="textPersonName|textCapWords"
         />
 
     <EditText
-        android:id="@+id/phoneEtRU"
+        android:id="@+id/phoneEtPU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -92,7 +83,7 @@
         android:hint="Phone"
         android:textColorHint="@color/black"
         android:textColor="@color/black"
-        android:layout_below="@id/nameEtRU"
+        android:layout_below="@id/nameEtPU"
         android:drawableStart="@drawable/ic_phone_grau"
         android:drawableLeft="@drawable/ic_phone_grau"
         android:inputType="phone"
@@ -103,14 +94,14 @@
 
     <LinearLayout
         android:id="@+id/addressLl"
-        android:layout_below="@id/phoneEtRU"
+        android:layout_below="@id/phoneEtPU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="5dp"
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/countryEtRU"
+            android:id="@+id/countryEtPU"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -126,7 +117,7 @@
             />
 
         <EditText
-            android:id="@+id/stateEtRU"
+            android:id="@+id/stateEtPU"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -142,7 +133,7 @@
             />
 
         <EditText
-            android:id="@+id/cityEtRU"
+            android:id="@+id/cityEtPU"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -161,7 +152,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/addressEtRU"
+        android:id="@+id/addressEtPU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -176,78 +167,14 @@
         android:inputType="textPostalAddress|textMultiLine"
         />
 
-
-    <EditText
-        android:id="@+id/emailEtRU"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:hint="Email"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:padding="5dp"
-        android:layout_below="@id/addressEtRU"
-        android:drawableStart="@drawable/ic_email_gray"
-        android:drawableLeft="@drawable/ic_email_gray"
-        android:inputType="textEmailAddress"
-        />
-
-
-    <EditText
-        android:id="@+id/passwordETRU"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:hint="Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:padding="5dp"
-        android:layout_below="@id/emailEtRU"
-        android:drawableStart="@drawable/ic_lock_gray"
-        android:drawableLeft="@drawable/ic_lock_gray"
-        android:inputType="textPassword"
-        />
-
-    <EditText
-        android:id="@+id/confirmPasswordETRU"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:hint="Confirm Password"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:padding="5dp"
-        android:layout_below="@id/passwordETRU"
-        android:drawableStart="@drawable/ic_lock_gray"
-        android:drawableLeft="@drawable/ic_lock_gray"
-        android:inputType="textPassword"
-        />
-
-
     <Button
-        android:id="@+id/registerBtnRU"
+        android:id="@+id/updateBtnPU"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/confirmPasswordETRU"
+        android:layout_below="@id/addressEtPU"
         android:layout_margin="5dp"
         android:layout_centerHorizontal="true"
-        android:text="Register"/>
-
-    <TextView
-        android:id="@+id/registerSellerBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:textColor="@color/black"
-        android:text="Are you a seller ? Register as a seller"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        />
-
-
+        android:text="Update"/>
 
 
 </RelativeLayout>

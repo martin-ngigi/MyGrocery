@@ -100,10 +100,8 @@ public class MainUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //open edit profile activity
-                //open edit profile
-                /**
+                //open edit profile activity
                 startActivity(new Intent(MainUserActivity.this, ProfileEditUserActivity.class));
-                 **/
             }
         });
 
@@ -126,7 +124,7 @@ public class MainUserActivity extends AppCompatActivity {
         settingsBtnMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainUserActivity.this, SettingsActivity.class));
+                startActivity(new Intent(MainUserActivity.this, SettingsActivity.class));
             }
         });
 

@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-/**import com.example.mygrocery.Activities.OrderDetailsUserActivity;**/
+import com.example.mygrocery.Activities.OrderDetailsUserActivity;
 import com.example.mygrocery.Models.ModelOrderUser;
 import com.example.mygrocery.R;
 import com.google.firebase.database.DataSnapshot;
@@ -83,12 +83,10 @@ public class AdapterOrderUser extends RecyclerView.Adapter<AdapterOrderUser.Hold
             @Override
             public void onClick(View v) {
                 //open Order Details Activity, we need two keys: orderTo,orderId
-                /**
                 Intent intent = new Intent(context, OrderDetailsUserActivity.class);
                 intent.putExtra("orderTo", orderTo);
                 intent.putExtra("orderId", orderId);
-                context.startActivity(intent);//after passing values to OrderDetails, get values using
-                 **/
+                context.startActivity(intent);//after passing values to OrderDetails, get values using intent
             }
         });
 

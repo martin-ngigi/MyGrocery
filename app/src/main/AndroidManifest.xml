@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mygrocery">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,34 +14,30 @@
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MyGrocery"
-        tools:targetApi="31">
+        android:theme="@style/Theme.MyGrocery.NoActionBar">
+        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity android:name=".Activities.OrderDetailsSellerActivity" />
+        <activity android:name=".Activities.ShopReviewsActivity" />
+        <activity android:name=".Activities.WriteReviewActivity" />
+        <activity android:name=".Activities.OrderDetailsUserActivity" />
         <activity
-            android:name=".Activities.ForgotPasswordActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.MainSellerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.MainUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.RegisterSellerActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.RegisterUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activities.SplashActivity"
+            android:name=".Activities.ShopDetailsActivity"
+            android:windowSoftInputMode="stateHidden" /> <!-- hide keyboard -->
+        <activity android:name=".Activities.EditProductActivity" />
+        <activity android:name=".Activities.AddProductActivity" />
+        <activity android:name=".Activities.ProfileEditSellerActivity" />
+        <activity android:name=".Activities.ProfileEditUserActivity" />
+        <activity android:name=".Activities.MainUserActivity" />
+        <activity android:name=".Activities.MainSellerActivity" />
+        <activity android:name=".Activities.ForgotPasswordActivity" />
+        <activity android:name=".Activities.RegisterUserActivity" />
+        <activity android:name=".Activities.RegisterSellerActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -50,6 +45,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" />
+
+        <!--Allow service to run in the background-->
+        <service
+            android:name=".MyFirebaseMessaging"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
