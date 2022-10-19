@@ -56,6 +56,8 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
     EditText nameEtRU,phoneEtRU,countryEtRU, stateEtRU, cityEtRU, addressEtRU, emailEtRU, passwordETRU, confirmPasswordETRU;
     Button registerBtnRU;
 
+    private String fullName, phoneNumber, country, state, city, address, email, password, confirmPassword;
+
     //permission constants
     private static  final int LOCATION_REQUEST_CODE=100;
     private static  final int CAMERA_REQUEST_CODE=200;
@@ -164,7 +166,6 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
             }
         });
     }
-    String fullName, phoneNumber, country, state, city, address, email, password, confirmPassword;
 
     private void inputData() {
         //input data
@@ -585,5 +586,77 @@ public class RegisterUserActivity extends AppCompatActivity implements LocationL
         }
 
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

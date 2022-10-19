@@ -33,6 +33,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText emailEt, passwordET;
     private TextView forgotPasswordTv,noAccount;
     private Button loginBtn;
+    private String email, password;
+
 
     //progressbar to display while registering user
     AlertDialog dialog;
@@ -50,6 +52,9 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordTv = findViewById(R.id.forgotPasswordTv);
         noAccount = findViewById(R.id.noAccountTv);
         loginBtn = findViewById(R.id.loginBtn);
+
+        email = emailEt.getText().toString().trim();
+        password = passwordET.getText().toString().trim();
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
@@ -84,7 +89,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private String email, password;
     private void loginUser() {
 
         email = emailEt.getText().toString().trim();
@@ -186,5 +190,21 @@ public class LoginActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    public void setEmail(String email){
+        this.email = email;
+    }
+
+    public String getEmail(){
+        return this.email;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public String getPassword(){
+        return this.password;
     }
 }
