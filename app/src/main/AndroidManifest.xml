@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.mygrocery">
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -19,7 +20,32 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyGrocery.NoActionBar">
-        <activity android:name=".Activities.SettingsActivity"></activity>
+        <activity
+            android:name=".MVP.View.ViewMainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MVP.ModelViewPresenterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.EspressoUITests.LanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.EspressoUITests.Espresso2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.EspressoUITests.Espresso2Activity2"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.UnitTests.MockitoUnitTest.loginform.view.MainMockitoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.UnitTests.MockitoUnitTest.loginform.view.LoginMockitoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Tests.UnitTests.SimpleCalculatorUnitTestActivity"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity android:name=".Activities.SettingsActivity" />
         <activity android:name=".Activities.OrderDetailsSellerActivity" />
         <activity android:name=".Activities.ShopReviewsActivity" />
         <activity android:name=".Activities.WriteReviewActivity" />
@@ -37,7 +63,8 @@
         <activity android:name=".Activities.RegisterUserActivity" />
         <activity android:name=".Activities.RegisterSellerActivity" />
         <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.SplashActivity"
+        <activity
+            android:name=".Activities.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,14 +74,12 @@
         </activity>
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
-            android:theme="@style/Base.Theme.AppCompat" />
-
-        <!--Allow service to run in the background-->
+            android:theme="@style/Base.Theme.AppCompat" /> <!-- Allow service to run in the background -->
         <service
             android:name=".MyFirebaseMessaging"
             android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
     </application>

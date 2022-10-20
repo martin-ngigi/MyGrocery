@@ -13,7 +13,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mygrocery.MVP.View.ViewMainActivity;
+import com.example.mygrocery.Tests.EspressoUITests.Espresso2Activity;
+import com.example.mygrocery.Tests.EspressoUITests.LanguageActivity;
+import com.example.mygrocery.Tests.UnitTests.MockitoUnitTest.loginform.view.LoginMockitoActivity;
 import com.example.mygrocery.R;
+import com.example.mygrocery.Tests.UnitTests.SimpleCalculatorUnitTestActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -35,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginBtn;
     private String email, password;
 
+    private Button simplecalcBtn, mvpBtn, mockitoTestBtn, myEspressoBtn, languageBtn;
+
 
     //progressbar to display while registering user
     AlertDialog dialog;
@@ -52,6 +59,13 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordTv = findViewById(R.id.forgotPasswordTv);
         noAccount = findViewById(R.id.noAccountTv);
         loginBtn = findViewById(R.id.loginBtn);
+
+
+        simplecalcBtn= findViewById(R.id.simplecalcBtn);
+        mvpBtn = findViewById(R.id.mvpBtn);
+        mockitoTestBtn = findViewById(R.id.mockitoTestBtn);
+        myEspressoBtn = findViewById(R.id.myEspressoBtn);
+        languageBtn = findViewById(R.id.languageBtn);
 
         email = emailEt.getText().toString().trim();
         password = passwordET.getText().toString().trim();
@@ -85,6 +99,26 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 loginUser();
             }
+        });
+
+        simplecalcBtn.setOnClickListener( e->{
+            startActivity(new Intent(LoginActivity.this, SimpleCalculatorUnitTestActivity.class));
+        });
+
+        mvpBtn.setOnClickListener( e->{
+            startActivity(new Intent(LoginActivity.this, ViewMainActivity.class));
+        });
+
+        mockitoTestBtn.setOnClickListener(e-> {
+            startActivity(new Intent(LoginActivity.this, LoginMockitoActivity.class));
+        });
+
+        myEspressoBtn.setOnClickListener( e->{
+            startActivity(new Intent(LoginActivity.this, Espresso2Activity.class));
+        });
+
+        languageBtn.setOnClickListener( e->{
+            startActivity(new Intent(LoginActivity.this, LanguageActivity.class));
         });
 
     }

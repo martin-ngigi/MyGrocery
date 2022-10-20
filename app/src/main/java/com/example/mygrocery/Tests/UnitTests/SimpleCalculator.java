@@ -1,4 +1,4 @@
-package com.example.mygrocery;
+package com.example.mygrocery.Tests.UnitTests;
 
 public class SimpleCalculator {
     public int add(int numA, int numB){

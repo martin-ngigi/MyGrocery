@@ -1,7 +1,16 @@
-package com.example.mygrocery;
+package com.example.mygrocery.Tests.UnitTests;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
+
+import com.example.mygrocery.Tests.UnitTests.Grade;
 
 import org.junit.After;
 import org.junit.Before;

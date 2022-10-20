@@ -7,87 +7,205 @@
     android:background="@color/white"
     tools:context=".Activities.LoginActivity">
 
-    <!--tool bar-->
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:padding="10dp"
-        android:background="@drawable/shape_rect01">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:layout_centerHorizontal="true"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            />
-
-    </RelativeLayout>
-
-    <ImageView
-        android:id="@+id/iconIvL"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/shape_circle01"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_key_white"
-        android:padding="5dp"
-        android:layout_marginBottom="40dp"
-        android:layout_centerHorizontal="true"/>
-
-    <EditText
-        android:id="@+id/emailEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:hint="Email"
-        android:padding="10dp"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:layout_below="@id/iconIvL"
-        android:drawableStart="@drawable/ic_email_gray"
-        android:drawableLeft="@drawable/ic_email_gray"
-        android:inputType="textEmailAddress"
-        />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
-    <EditText
-        android:id="@+id/passwordET"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_rect02"
-        android:hint="Password"
-        android:padding="10dp"
-        android:textColorHint="@color/black"
-        android:textColor="@color/black"
-        android:layout_below="@id/emailEt"
-        android:drawableStart="@drawable/ic_lock_gray"
-        android:drawableLeft="@drawable/ic_lock_gray"
-        android:inputType="textPassword"
-        />
+            <!--tool bar-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:padding="10dp"
+                android:background="@drawable/shape_rect01">
 
-    <TextView
-        android:id="@+id/forgotPasswordTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Forgot password"
-        android:textColor="@color/black"
-        android:layout_below="@id/passwordET"
-        android:layout_centerHorizontal="true"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Login"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    />
 
-    <Button
-        android:id="@+id/loginBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/forgotPasswordTv"
-        android:layout_margin="5dp"
-        android:layout_centerHorizontal="true"
-        android:text="Login"/>
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/iconIvL"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_circle01"
+                android:layout_marginTop="60dp"
+                android:src="@drawable/ic_key_white"
+                android:padding="5dp"
+                android:layout_marginBottom="40dp"
+                android:layout_centerHorizontal="true"/>
+
+            <EditText
+                android:id="@+id/emailEt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_rect02"
+                android:hint="Email"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:layout_below="@id/iconIvL"
+                android:drawableStart="@drawable/ic_email_gray"
+                android:drawableLeft="@drawable/ic_email_gray"
+                android:inputType="textEmailAddress"
+                />
+
+
+            <EditText
+                android:id="@+id/passwordET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@drawable/shape_rect02"
+                android:hint="Password"
+                android:padding="10dp"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:layout_below="@id/emailEt"
+                android:drawableStart="@drawable/ic_lock_gray"
+                android:drawableLeft="@drawable/ic_lock_gray"
+                android:inputType="textPassword"
+                />
+
+            <TextView
+                android:id="@+id/forgotPasswordTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/passwordET"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Forgot password"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/loginBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forgotPasswordTv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Login" />
+
+            <TextView
+                android:id="@+id/architecture"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/loginBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text=" Architecture"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/mvpBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/architecture"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="Model View Presenter" />
+
+            <TextView
+                android:id="@+id/unitTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mvpBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text=" Unit Tests"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/simplecalcBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/unitTest"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="Simple Calc Unit Test" />
+
+            <Button
+                android:id="@+id/mockitoTestBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/simplecalcBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="Mockito Unit test" />
+
+            <TextView
+                android:id="@+id/espressoUnitTest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mockitoTestBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="Espresso Unit Test"
+                android:textColor="@color/black" />
+
+            <Button
+                android:id="@+id/languageBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/espressoUnitTest"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="Language Espresso test" />
+
+            <Button
+                android:id="@+id/myEspressoBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/languageBtn"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="5dp"
+                android:text="My Espresso test" />
+
+
+
+        </RelativeLayout>
+    </ScrollView>
 
     <TextView
         android:id="@+id/noAccountTv"
@@ -99,8 +217,6 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         />
-
-
 
 
 </RelativeLayout>
