@@ -30,7 +30,7 @@ public class SimpleCalculatorTest {
     public void threePlusSevenEqualsTen(){
         SimpleCalculator calculator = new SimpleCalculator();
         int sum = calculator.add(3,7);
-        assertEquals(11, sum); // 10==10 .... This test should fail since 11 != 10
+        assertEquals(10, sum); // 10==10 .... This test should pass since 10 == 10
 
     }
 }
