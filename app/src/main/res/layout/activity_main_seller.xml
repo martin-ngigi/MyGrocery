@@ -80,11 +80,11 @@
             android:id="@+id/nameTvMS"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name Seller"
             android:layout_toEndOf="@id/profileIvMS"
+            android:layout_toRightOf="@id/profileIvMS"
+            android:text="Name Seller"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_toRightOf="@id/profileIvMS" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/shopNameTvMS"

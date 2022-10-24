@@ -35,6 +35,7 @@ import dmax.dialog.SpotsDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
+    //https://www.geeksforgeeks.org/how-to-fix-android-os-networkonmainthreadexception/
     private EditText emailEt, passwordET;
     private TextView forgotPasswordTv,noAccount;
     private Button loginBtn;

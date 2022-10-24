@@ -4,13 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/drawable/ic_add_gray.xml" value="0.1" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/drawable/shape_rect01.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_add_product.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_edit_product.xml" value="0.15364583333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_espresso2.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_espresso22.xml" value="0.11927083333333334" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_forgot_password.xml" value="0.1140625" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_language.xml" value="0.11927083333333334" />
-        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login.xml" value="0.14" />
+        <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login.xml" value="0.17" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login2.xml" value="0.1" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_login_mockito.xml" value="0.14" />
         <entry key="..\:/Users/Administrator/AndroidStudioProjects/MyGrocery/app/src/main/res/layout/activity_main.xml" value="0.15" />
