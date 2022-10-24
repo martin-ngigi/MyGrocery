@@ -23,7 +23,6 @@ public class SimpleCalculatorTest {
         SimpleCalculator calculator = new SimpleCalculator();
         int sum = calculator.add(2,2);
         assertEquals(4, sum);
-
     }
 
     @Test
