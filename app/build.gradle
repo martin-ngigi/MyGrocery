@@ -18,6 +18,9 @@ android {
         //multi index Error
         multiDexEnabled true
     }
+    lintOptions {
+        abortOnError false
+    }
 
     buildTypes {
         release {
