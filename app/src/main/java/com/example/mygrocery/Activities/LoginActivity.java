@@ -35,19 +35,28 @@ import dmax.dialog.SpotsDialog;
 
 public class LoginActivity extends AppCompatActivity {
 
-    //https://www.geeksforgeeks.org/how-to-fix-android-os-networkonmainthreadexception/
+    /**
+     * https://www.geeksforgeeks.org/how-to-fix-android-os-networkonmainthreadexception/
+     */
     private EditText emailEt, passwordET;
     private TextView forgotPasswordTv,noAccount;
     private Button loginBtn;
     private String email, password;
 
+    /**
+     * declare views
+     */
     private Button simplecalcBtn, mvpBtn, mockitoTestBtn, myEspressoBtn, languageBtn;
 
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
-    //declare an instance of firebase
+    /**
+     * declare an instance of firebase
+     */
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -55,6 +64,9 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        /**
+         * initialize views
+         */
         emailEt = findViewById(R.id.emailEt);
         passwordET = findViewById(R.id.passwordET);
         forgotPasswordTv = findViewById(R.id.forgotPasswordTv);
@@ -71,13 +83,17 @@ public class LoginActivity extends AppCompatActivity {
         email = emailEt.getText().toString().trim();
         password = passwordET.getText().toString().trim();
 
-        // Initialize Firebase Auth
+        /**
+         *  Initialize Firebase Auth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
         dialog.setTitle("Please wait ");
 
-        //not have account
+        /**
+         * not have account
+         */
         noAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +102,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        //forgot
+        /**
+         *forgot
+         */
         forgotPasswordTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +113,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle loginBtn listener
+         */
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,22 +123,37 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle simplecalcBtn listener
+         */
         simplecalcBtn.setOnClickListener( e->{
             startActivity(new Intent(LoginActivity.this, SimpleCalculatorUnitTestActivity.class));
         });
 
+        /**
+         * handle mvpBtn listener
+         */
         mvpBtn.setOnClickListener( e->{
             startActivity(new Intent(LoginActivity.this, ViewMainActivity.class));
         });
 
+        /**
+         * handle mockitoTestBtn listener
+         */
         mockitoTestBtn.setOnClickListener(e-> {
             startActivity(new Intent(LoginActivity.this, LoginMockitoActivity.class));
         });
 
+        /**
+         * handle myEspressoBtn listener
+         */
         myEspressoBtn.setOnClickListener( e->{
             startActivity(new Intent(LoginActivity.this, Espresso2Activity.class));
         });
 
+        /**
+         * handle languageBtn listener
+         */
         languageBtn.setOnClickListener( e->{
             startActivity(new Intent(LoginActivity.this, LanguageActivity.class));
         });
@@ -126,16 +162,25 @@ public class LoginActivity extends AppCompatActivity {
 
     private void loginUser() {
 
+        /**
+         * get data from UI
+         */
         email = emailEt.getText().toString().trim();
         password = passwordET.getText().toString().trim();
 
-        //validate
+        /**
+         * validate
+         * email not a valid
+         */
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             //set error and focus to email edit
             emailEt.setError("Invalid Email");
             emailEt.setFocusable(true);
             return;
         }
+        /**
+         * password not a valid
+         */
         if (password.length()<6){
             //set error and focus to password edit
             passwordET.setError("Password length at least 6 characters");
@@ -145,18 +190,25 @@ public class LoginActivity extends AppCompatActivity {
         dialog.setMessage("Login progress...");
         dialog.show();
 
+        /**
+         * firebaseAuth sign with email and passwords.
+         */
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
                     public void onSuccess(AuthResult authResult) {
-                        //login successful
+                        /**
+                         * login successful
+                         */
                         makeMeOnline();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //loggin failed
+                        /**
+                         * login failed
+                         */
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -164,26 +216,34 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void makeMeOnline() {
-        //after login , make user online
+        /**
+         * after login , make user online
+         */
         dialog.setMessage("Checking user...");
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("online", "true");
 
-        //update value to db
+        /**
+         * update value to db
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        //update successful
+                        /**
+                         * update successful
+                         */
                         checkUserType();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull  Exception e) {
-                        //failed updating
+                        /**
+                         * failed updating
+                         */
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -192,8 +252,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void checkUserType() {
-        //if user is seller, start seller main activity
-        //if user is user, start user main activity
+        /**
+         * if user is seller, start seller main activity
+         * if user is user, start user main activity
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
                 .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -202,13 +264,17 @@ public class LoginActivity extends AppCompatActivity {
                         for (DataSnapshot ds : snapshot.getChildren()){
                             String accountType = ""+ds.child("accountType").getValue();
                             if (accountType.equals("Seller")){
-                                //user is seller
+                                /**
+                                 * user is seller
+                                 */
                                 dialog.dismiss();
                                 startActivity(new Intent(LoginActivity.this, MainSellerActivity.class));
                                 finish();
                             }
                             else {
-                                //user is buyer
+                                /**
+                                 * user is buyer
+                                 */
                                 dialog.dismiss();
                                 startActivity(new Intent(LoginActivity.this, MainUserActivity.class));
                                 finish();
@@ -219,7 +285,9 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                        //user is buyer
+                        /**
+                         * user is buyer
+                         */
                         dialog.dismiss();
                         Toast.makeText(LoginActivity.this, ""+error.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -227,6 +295,10 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * Getters and setters
+     * @param email is to be returned
+     */
     public void setEmail(String email){
         this.email = email;
     }
@@ -235,6 +307,10 @@ public class LoginActivity extends AppCompatActivity {
         return this.email;
     }
 
+    /**
+     *
+     * @param password  is to be returned
+     */
     public void setPassword(String password){
         this.password = password;
     }

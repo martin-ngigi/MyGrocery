@@ -22,31 +22,45 @@ import dmax.dialog.SpotsDialog;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
 
+    /**
+     * Declare the views
+     */
     private ImageButton backBtn;
     private TextView emailEtF;
     private Button recoverBtn;
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
-    //declare an instance of firebase
+    /**
+     * declare an instance of firebase
+     */
     private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
 
+        /**
+         * initialize the views
+         */
         backBtn = findViewById(R.id.backBtn);
         emailEtF = findViewById(R.id.emailEtF);
         recoverBtn = findViewById(R.id.recoverBtn);
 
-        // Initialize Firebase Auth
+        /**
+         *  Initialize Firebase Auth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
         dialog.setTitle("Please wait ");
 
-
+        /**
+         * handle backBtn listener
+         */
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +69,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle recoverBtn listener
+         */
         recoverBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +86,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         //validate
         email = emailEtF.getText().toString().trim();
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            //set error and focus to email edit
+            /**
+             * set error and focus to email edit
+             */
             emailEtF.setError("Invalid Email");
             emailEtF.setFocusable(true);
             Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show();
@@ -79,11 +98,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         dialog.setMessage("Sending instructions to reset Password...");
         dialog.show();
 
+        /**
+         *  send  sendPasswordResetEmail
+         */
         firebaseAuth.sendPasswordResetEmail(email)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
-                        //instruction sent
+                        /**
+                         * instruction sent
+                         */
                         dialog.dismiss();
                         Toast.makeText(ForgotPasswordActivity.this, "instructions to reset Password sent to email", Toast.LENGTH_SHORT).show();
                     }
@@ -91,7 +115,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //instruction failed
+                        /**
+                         * instruction failed
+                         */
                         dialog.dismiss();
                         Toast.makeText(ForgotPasswordActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

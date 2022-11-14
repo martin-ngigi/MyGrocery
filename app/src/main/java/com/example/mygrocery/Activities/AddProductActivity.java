@@ -44,6 +44,9 @@ import dmax.dialog.SpotsDialog;
 
 public class AddProductActivity extends AppCompatActivity {
 
+    /**
+     * Declare the views
+     */
     private ImageButton backBtnAP;
     private ImageView productIconIvAP;
     private EditText titleEtAP, descriptionEtAP, quantityEtAP, priceEtAP, discountPriceEtAP, discountNoteEtAP;
@@ -51,24 +54,34 @@ public class AddProductActivity extends AppCompatActivity {
     private SwitchCompat discountSwitch;
     private Button addProductBtnAP;
 
-    //permission constants
+    /**
+     * permission constants
+     */
     private static  final int CAMERA_REQUEST_CODE=200;
     private static  final int STORAGE_REQUEST_CODE=300;
 
-    //IMAGE PICK CONSTANT
+    /**
+     * IMAGE PICK CONSTANT
+     */
     private static  final int IMAGE_PICK_GALLERY_CODE=400;
     private static  final int IMAGE_PICK_CAMERA_CODE=500;
 
-    //permission arrays
+    /**
+     * permission arrays
+     */
     private String[] cameraPermission;
     private String[] storagePermission;
     //image picked Uri
     private Uri image_uri;
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
-    //declare an instance of firebase
+    /**
+     * declare an instance of firebase
+     */
     private FirebaseAuth firebaseAuth;
 
 
@@ -77,6 +90,9 @@ public class AddProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
+        /**
+         * Initialize The views
+         */
         backBtnAP = findViewById(R.id.backBtnAP);
         productIconIvAP = findViewById(R.id.productIconIvAP);
         titleEtAP = findViewById(R.id.titleEtAP);
@@ -89,27 +105,37 @@ public class AddProductActivity extends AppCompatActivity {
         discountSwitch = findViewById(R.id.discountSwitch);
         addProductBtnAP = findViewById(R.id.addProductBtnAP);
 
-        //unchecked, hide discountPriceEt, discountNote
+        /**
+         * unchecked, hide discountPriceEt, discountNote
+         */
         discountPriceEtAP.setVisibility(View.GONE);
         discountNoteEtAP.setVisibility(View.GONE);
 
-        //init permission array
+        /**
+         * init permission array
+         */
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        // Initialize Firebase Auth
+        /**
+         *  Initialize Firebase Auth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
         dialog.setTitle("Please wait ");
 
-        //if discountSwitch btn is checked, show discountPriceEt, discountNote
+        /**
+         * if discountSwitch btn is checked, show discountPriceEt, discountNote
+         */
         //if discountSwitch btn is checked, hide discountPriceEt, discountNote
         discountSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    //checked,show discountPriceEt, discountNote
+                    /**
+                     * checked,show discountPriceEt, discountNote
+                     */
                     discountPriceEtAP.setVisibility(View.VISIBLE);
                     discountNoteEtAP.setVisibility(View.VISIBLE);
                 }
@@ -121,6 +147,9 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle backBtnAP listener
+         */
         backBtnAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,13 +157,19 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle productIconIvAP listener
+         */
         productIconIvAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showImagePickDialog();
             }
         });
-        
+
+        /**
+         * handle categoryAP listener
+         */
         categoryAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,22 +177,35 @@ public class AddProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle addProductBtnAP listener
+         */
         addProductBtnAP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Flow
-                // 1 . input data
-                // 2. validate data
-                // 3. add data to db
-                inputData();
+                /**
+                 * // 1 . input data
+                 * // 2. validate data
+                 * // 3. add data to db
+                 */
+                String a ="aa";
+                inputData(a);
             }
         });
     }
 
     private String productTitle, productDescription, productCategory, productQuantity, originalPrice, discountPrice, discountNote;
     private boolean discountAvailableSwitch = false;
-    private void inputData() {
-        // 1 . input data
+
+    /**
+     * <p></p>
+     * @param a
+     */
+    private void inputData(String a) {
+        /**
+         *  1 . input data
+         */
         productTitle = titleEtAP.getText().toString().trim();
         productDescription = descriptionEtAP.getText().toString().trim();
         productCategory = categoryAP.getText().toString().trim();
@@ -165,77 +213,113 @@ public class AddProductActivity extends AppCompatActivity {
         originalPrice = priceEtAP.getText().toString().trim();
         discountAvailableSwitch = discountSwitch.isChecked(); //true or false
 
-        // 2. validate data
+        /**
+         * 2. validate data
+         * productTitle is empty
+         */
+        //
         if (TextUtils.isEmpty(productTitle)){
             titleEtAP.setError("Please enter product title");
             titleEtAP.setFocusable(true);
             Toast.makeText(this, "Please product title", Toast.LENGTH_SHORT).show();
-            return; //don't proceed further
+            return; /**
+             don't proceed further*/
         }
+        //productDescription is empty
         if (TextUtils.isEmpty(productDescription)){
             descriptionEtAP.setError("Please enter product description");
             descriptionEtAP.setFocusable(true);
             Toast.makeText(this, "Please product description", Toast.LENGTH_SHORT).show();
-            return;//don't proceed further
+            return;/**
+             don't proceed further*/
         }
+        //productCategory is empty
         if (TextUtils.isEmpty(productCategory)){
             categoryAP.setError("Please enter product category");
             categoryAP.setFocusable(true);
             Toast.makeText(this, "Please product category", Toast.LENGTH_SHORT).show();
-            return;//don't proceed further
+            return;/**
+             don't proceed further
+             */
         }
+        //productQuantity is empty
         if (TextUtils.isEmpty(productQuantity)){
             quantityEtAP.setError("Please enter product quantity");
             quantityEtAP.setFocusable(true);
             Toast.makeText(this, "Please product quantity", Toast.LENGTH_SHORT).show();
-            return;//don't proceed further
+            return; /**
+             don't proceed further
+             */
         }
+        //originalPrice is empty
         if (TextUtils.isEmpty(originalPrice)){
             priceEtAP.setError("Please enter product price");
             priceEtAP.setFocusable(true);
             Toast.makeText(this, "Please enter product prce", Toast.LENGTH_SHORT).show();
-            return;//don't proceed further
+            return;/**
+             don't proceed further*/
         }
+
         if (discountAvailableSwitch){
-            //product is with discount
+            /**
+             * product is with discount
+             */
             discountPrice = discountPriceEtAP.getText().toString().trim();
             discountNote = discountNoteEtAP.getText().toString().trim();
 
+            /**
+             * discountPrice is empty
+             */
             if (TextUtils.isEmpty(discountPrice)){
                 discountPriceEtAP.setError("Please enter discount Price ");
                 discountPriceEtAP.setFocusable(true);
                 Toast.makeText(this, "Please enter discount Price", Toast.LENGTH_SHORT).show();
                 return;//don't proceed further
             }
+            /**
+             * discountNote is empty
+             */
             if (TextUtils.isEmpty(discountNote)){
                 discountNoteEtAP.setError("Please enter discount Note");
                 discountNoteEtAP.setFocusable(true);
                 Toast.makeText(this, "Please discount Note", Toast.LENGTH_SHORT).show();
-                return;//don't proceed further
+                return;/**
+                 don't proceed further*/
             }
 
         }
         else {
-            //product is without discount
+            /**
+             * product is without discount
+             * */
             discountPrice = "0";
             discountNote = "";
         }
 
-        // 3. add data to db
+        /**
+         *  3. add data to db
+         * */
         addProduct();
 
     }
 
     private void addProduct() {
-        // 3. add data to db
+        /**
+         *  3. add data to db
+         * */
         dialog.setMessage("Adding product...");
         dialog.show();
 
         String timeStamp = ""+System.currentTimeMillis();
 
         if (image_uri == null){
-            //upload without Image
+            /**
+             * upload without Image
+             */
 
+            /**
+             * use hash map to save data
+             */
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("productId",""+timeStamp);
             hashMap.put("productTitle",""+productTitle);
@@ -251,13 +335,17 @@ public class AddProductActivity extends AppCompatActivity {
             hashMap.put("uid",""+firebaseAuth.getUid());
 
 
-            //save to db
+            /**
+             * save to db
+             */
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).child("Products").child(timeStamp).setValue(hashMap)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            //db updated
+                            /**
+                             * db updated
+                             */
                             dialog.dismiss();
                             Toast.makeText(AddProductActivity.this, "Product added successfully", Toast.LENGTH_SHORT).show();
                             clearData();
@@ -266,7 +354,9 @@ public class AddProductActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //failed updating db
+                            /**
+                             * failed updating db
+                             */
                             dialog.dismiss();
                             Toast.makeText(AddProductActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -274,9 +364,13 @@ public class AddProductActivity extends AppCompatActivity {
                     });
         }
         else {
-            //upload with Image
+            /**
+             * upload with Image
+             */
 
-            //first upload image to db
+            /**
+             * first upload image to db
+             */
             String filePathAndName = "product_images/"+""+timeStamp;
             //upload image
             StorageReference storageReference =  FirebaseStorage.getInstance().getReference(filePathAndName);
@@ -284,13 +378,18 @@ public class AddProductActivity extends AppCompatActivity {
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            //get uri of uploaded image
+                            /**
+                             * get uri of uploaded image
+                             */
                             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!uriTask.isSuccessful());
                             Uri downloadImageUri = uriTask.getResult();
 
                             if (uriTask.isSuccessful()){
 
+                                /**
+                                 * use hash map to save data
+                                 */
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("productId",""+timeStamp);
                                 hashMap.put("productTitle",""+productTitle);
@@ -306,7 +405,9 @@ public class AddProductActivity extends AppCompatActivity {
                                 hashMap.put("uid",""+firebaseAuth.getUid());
 
 
-                                //save to db
+                                /**
+                                 * save to db
+                                 */
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                                 ref.child(firebaseAuth.getUid()).child("Products").child(timeStamp).setValue(hashMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -344,7 +445,9 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void clearData() {
-        //clear data after uploading product
+        /**
+         * clear data after uploading product
+         */
         titleEtAP.setText("");
         descriptionEtAP.setText("");
         categoryAP.setText("");
@@ -357,7 +460,9 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void categoryDialog() {
-        //dialog
+        /**
+         * dialog
+         */
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Product category")
                 .setItems(Constants.productCategories, new DialogInterface.OnClickListener() {
@@ -374,7 +479,9 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void showImagePickDialog() {
-        //options to display in dialog
+        /**
+         * options to display in dialog
+         */
         String[] options ={"Camera"," Gallery"};
         //dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -382,27 +489,39 @@ public class AddProductActivity extends AppCompatActivity {
                 .setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //handle clicks
+                        /**
+                         * handle clicks
+                         */
                         if (which == 0){
-                            //camera clicked
+                            /**
+                             * camera clicked
+                             */
                             if (checkCameraPermission()){
                                 //camera permission allowed
                                 pickFromCamera();
                             }
                             else {
-                                //camera permission not allowed
+                                /**
+                                 * camera permission not allowed
+                                 */
                                 requestCameraPermission();
                             }
                         }
                         else {
-                            //gallery clicked
+                            /**
+                             * gallery clicked
+                             */
                             if (checkStoragePermission()){
-                                //storage permission allowed
+                                /**
+                                 * storage permission allowed
+                                 */
                                 pickFromGallery();
 
                             }
                             else {
-                                //storage permission not allowed
+                                /**
+                                 * storage permission not allowed
+                                 */
                                 requestStoragePermission();
                             }
 
@@ -412,36 +531,56 @@ public class AddProductActivity extends AppCompatActivity {
     }
 
     private void pickFromGallery(){
-        //intent to pick image from gallery
+        /**
+         * intent to pick image from gallery
+         */
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
     }
 
     private void pickFromCamera(){
-        //intent to pick image from camera
+        /**
+         * intent to pick image from camera
+         */
 
-        //using media store ro pick high/original quality image
+        /**
+         * using media store ro pick high/original quality image
+         */
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image Title");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp_Image Description");
 
         image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues);
 
+        /**
+         * pick image from storage
+         */
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
     }
 
+    /**
+     * permission checks
+     * @return the results of the spermissions
+     */
     private boolean checkStoragePermission(){
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
+    /**
+     * permission checks
+     */
     private void requestStoragePermission(){
         ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
     }
 
+    /**
+     * permission checks
+     * @return the results of the spermissions
+     */
     private boolean checkCameraPermission(){
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
@@ -450,10 +589,19 @@ public class AddProductActivity extends AppCompatActivity {
         return result && result1;
     }
 
+    /**
+     * /permission checks
+     */
     private void requestCameraPermission(){
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
 
+    /**
+     * permission checks results
+     * @param requestCode  the results of the permissions
+     * @param permissions the results of the permissions
+     * @param grantResults the results of the permissions
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
@@ -462,11 +610,15 @@ public class AddProductActivity extends AppCompatActivity {
                     boolean cameraAccepted= grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean storageAccepted= grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted && storageAccepted){
-                        //permission accepted
+                        /**
+                         * permission accepted
+                         */
                         pickFromCamera();
                     }
                     else {
-                        //permission denied
+                        /**
+                         * permission denied
+                         */
                         Toast.makeText(this, "Camera permissions are required...", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -477,11 +629,15 @@ public class AddProductActivity extends AppCompatActivity {
                 if (grantResults.length>0){
                     boolean storageAccepted= grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (storageAccepted){
-                        //permission accepted
+                        /**
+                         * permission accepted
+                         */
                         pickFromGallery();
                     }
                     else {
-                        //permission denied
+                        /**
+                         * permission denied
+                         */
                         Toast.makeText(this, "Storage permission is required...", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -492,17 +648,29 @@ public class AddProductActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    /**
+     * permission checks results
+     * @param requestCode of checking permissions
+     * @param resultCode of checking permissions
+     * @param data of checking permissions
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK){
             if (requestCode == IMAGE_PICK_GALLERY_CODE){
-                //get picked image
+                /**
+                 * get picked image
+                 */
                 image_uri = data.getData();
-                //set to image view
+                /**
+                 * set to image view
+                 */
                 productIconIvAP.setImageURI(image_uri);
             }
             else if (requestCode == IMAGE_PICK_CAMERA_CODE){
-                //set to image view
+                /**
+                 * set to image view
+                 */
                 productIconIvAP.setImageURI(image_uri);
             }
         }

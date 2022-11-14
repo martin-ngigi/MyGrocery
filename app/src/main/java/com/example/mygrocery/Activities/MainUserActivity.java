@@ -38,6 +38,9 @@ import dmax.dialog.SpotsDialog;
 
 public class MainUserActivity extends AppCompatActivity {
 
+    /**
+     * Declare views
+     */
     private TextView nameTvMU, emailTvMU, phoneTvMU, tabShopsTvMU, tabOrdersTvMU, allShopsTvMU, localShopsTvMU;
     private ImageButton logoutMU, editProfileMU, settingsBtnMU;
     private RelativeLayout shopsRl, ordersRl;
@@ -46,7 +49,9 @@ public class MainUserActivity extends AppCompatActivity {
 
     FirebaseAuth firebaseAuth;
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
     private ArrayList<ModelShop> shopList;
@@ -60,6 +65,9 @@ public class MainUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_user);
 
+        /**
+         * Initialize views
+         */
         nameTvMU = findViewById(R.id.nameTvMU);
         logoutMU = findViewById(R.id.logoutMU);
         editProfileMU = findViewById(R.id.editProfileMU);
@@ -76,6 +84,9 @@ public class MainUserActivity extends AppCompatActivity {
         ordersRVMU = findViewById(R.id.ordersRVMU);
         settingsBtnMU= findViewById(R.id.settingsBtnMU);
 
+        /**
+         * init firebaseAuth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
 
         dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
@@ -85,10 +96,15 @@ public class MainUserActivity extends AppCompatActivity {
         checkUser();
 
        // loadShops();
-        
-        //at first show shops UI
+
+        /**
+         * at first show shops UI
+         */
         showShopsUI();
-        
+
+        /**
+         * handle logoutMU listener
+         */
         logoutMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,15 +112,23 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle logoutMU listener
+         */
         editProfileMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //open edit profile activity
-                //open edit profile activity
+                /**
+                 * open edit profile activity
+                 */
                 startActivity(new Intent(MainUserActivity.this, ProfileEditUserActivity.class));
             }
         });
 
+        /**
+         * handle tabShopsTvMU listener
+         */
         tabShopsTvMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,6 +137,9 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle tabOrdersTvMU listener
+         */
         tabOrdersTvMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,6 +148,9 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle settingsBtnMU listener
+         */
         settingsBtnMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,8 +162,13 @@ public class MainUserActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Show shops
+     */
     private void showShopsUI() {
-        //show Product sUI and hide orders UI
+        /**
+         * show Product sUI and hide orders UI
+         */
         shopsRl.setVisibility(View.VISIBLE);
         ordersRl.setVisibility(View.GONE);
 
@@ -145,7 +180,9 @@ public class MainUserActivity extends AppCompatActivity {
     }
 
     private void showOrdersUI() {
-        //show Orders UI and hide products UI
+        /**
+         * show Orders UI and hide products UI
+         */
         shopsRl.setVisibility(View.GONE);
         ordersRl.setVisibility(View.VISIBLE);
 
@@ -157,13 +194,17 @@ public class MainUserActivity extends AppCompatActivity {
     }
 
     private void makeMeOffline() {
-        //after login , make user online
+        /**
+         * after login , make user online
+         */
         dialog.setMessage("Log out in progress...");
 
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("online", "false");
 
-        //update value to db
+        /**
+         * update value to db
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid()).updateChildren(hashMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -196,6 +237,9 @@ public class MainUserActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * load personal infor
+     */
     private void loadMyInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("uid").equalTo(firebaseAuth.getUid())
@@ -203,7 +247,9 @@ public class MainUserActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot ds : snapshot.getChildren()){
-                            //get Data
+                            /**
+                             * get Data
+                             */
                             String name = ""+ds.child("name").getValue();
                             String email = ""+ds.child("email").getValue();
                             String phone = ""+ds.child("phone").getValue();
@@ -211,7 +257,9 @@ public class MainUserActivity extends AppCompatActivity {
                             String accountType = ""+ds.child("accountType").getValue();
                             String city = ""+ds.child("city").getValue();
 
-                            //set data
+                            /**
+                             * set data
+                             */
                             nameTvMU.setText(name);
                             emailTvMU.setText(email);
                             phoneTvMU.setText(phone);
@@ -224,7 +272,9 @@ public class MainUserActivity extends AppCompatActivity {
                                 profileIvMU.setImageResource(R.drawable.ic_person_green);
                             }
 
-                            //load only those shops that are in the city of the user
+                            /**
+                             * load only those shops that are in the city of the user
+                             */
                             loadShops(city);
                             loadOrders();
 
@@ -239,10 +289,14 @@ public class MainUserActivity extends AppCompatActivity {
     }
 
     private void loadOrders() {
-        //init orders list
+        /**
+         * init orders list
+         */
         ordersList = new ArrayList<>();
 
-        //get orders
+        /**
+         * get orders
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -261,12 +315,18 @@ public class MainUserActivity extends AppCompatActivity {
                                         for (DataSnapshot ds : snapshot.getChildren()){
                                             ModelOrderUser modelOrderUser = ds.getValue(ModelOrderUser.class);
 
-                                            //add to list
+                                            /**
+                                             * add to list
+                                             */
                                             ordersList.add(modelOrderUser);
                                         }
-                                        //set up adapter
+                                        /**
+                                         * set up adapter
+                                         */
                                         adapterOrderUser = new AdapterOrderUser(MainUserActivity.this, ordersList);
-                                        //set to recyclerview
+                                        /**
+                                         * set to recyclerview
+                                         */
                                         ordersRVMU.setAdapter(adapterOrderUser);
                                     }
 
@@ -290,36 +350,50 @@ public class MainUserActivity extends AppCompatActivity {
     }
 
     private void loadShops(String myCity) {
-        //init list
+        /**
+         * init list
+         */
         shopList = new ArrayList<>();
 
-        //first display all shops on arrival
+        /**
+         * first display all shops on arrival
+         */
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.orderByChild("accountType").equalTo("Seller")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //clear list before adding
+                        /**
+                         * clear list before adding
+                         */
                         shopList.clear();
                         for (DataSnapshot ds : snapshot.getChildren()){
                             ModelShop modelShop = ds.getValue(ModelShop.class);
 
                             String shopCity = ""+ds.child("city").getValue();
 
-                            //show only user city shops
+                            /**
+                             * show only user city shops
+                             */
                             if (shopCity.equals(myCity)){
                                 shopList.add(modelShop);
                             }
 
-                            //if you want to to display all shops, skip the if statement
+                            /**
+                             * if you want to to display all shops, skip the if statement
+                             */
                             //shopList.add(modelShop);
                         }
 
-                        //setup adapter
+                        /**
+                         * setup adapter
+                         */
                         adapterShop = new AdapterShop(MainUserActivity.this, shopList);
 
-                        //set adapter to recyclerview
+                        /**
+                         * set adapter to recyclerview
+                         */
                         shopsRV.setAdapter(adapterShop);
 
                     }
@@ -330,7 +404,9 @@ public class MainUserActivity extends AppCompatActivity {
                     }
                 });
 
-        //on clicking all shops, display all shops
+        /**
+         * on clicking all shops, display all shops
+         */
         allShopsTvMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -339,23 +415,31 @@ public class MainUserActivity extends AppCompatActivity {
                         .addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //clear list before adding
+                                /**
+                                 * clear list before adding
+                                 */
                                 shopList.clear();
                                 for (DataSnapshot ds : snapshot.getChildren()){
                                     ModelShop modelShop = ds.getValue(ModelShop.class);
 
                                     String shopCity = ""+ds.child("city").getValue();
 
-                                    //if you want to to display all shops, skip the if statement
+                                    /**
+                                     * if you want to to display all shops, skip the if statement
+                                     */
                                     shopList.add(modelShop);
                                     allShopsTvMU.setBackgroundResource(R.drawable.shape_rect04);
                                     localShopsTvMU.setBackgroundResource(R.drawable.shape_rect02);
                                 }
 
-                                //setup adapter
+                                /**
+                                 * setup adapter
+                                 */
                                 adapterShop = new AdapterShop(MainUserActivity.this, shopList);
 
-                                //set adapter to recyclerview
+                                /**
+                                 * /set adapter to recyclerview
+                                 */
                                 shopsRV.setAdapter(adapterShop);
 
                             }
@@ -368,7 +452,9 @@ public class MainUserActivity extends AppCompatActivity {
             }
         });
 
-        //on clicking local shops, display nearby shops ie shops within my city
+        /**
+         * on clicking local shops, display nearby shops ie shops within my city
+         */
         localShopsTvMU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -378,28 +464,38 @@ public class MainUserActivity extends AppCompatActivity {
                         .addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                //clear list before adding
+                                /**
+                                 * clear list before adding
+                                 */
                                 shopList.clear();
                                 for (DataSnapshot ds : snapshot.getChildren()){
                                     ModelShop modelShop = ds.getValue(ModelShop.class);
 
                                     String shopCity = ""+ds.child("city").getValue();
 
-                                    //show only user city shops
+                                    /**
+                                     * show only user city shops
+                                     */
                                     if (shopCity.equals(myCity)){
                                         shopList.add(modelShop);
                                         localShopsTvMU.setBackgroundResource(R.drawable.shape_rect04);
                                         allShopsTvMU.setBackgroundResource(R.drawable.shape_rect02);
                                     }
 
-                                    //if you want to to display all shops, skip the if statement
+                                    /**
+                                     * if you want to to display all shops, skip the if statement
+                                     */
                                     //shopList.add(modelShop);
                                 }
 
-                                //setup adapter
+                                /**
+                                 * setup adapter
+                                 */
                                 adapterShop = new AdapterShop(MainUserActivity.this, shopList);
 
-                                //set adapter to recyclerview
+                                /**
+                                 * set adapter to recyclerview
+                                 */
                                 shopsRV.setAdapter(adapterShop);
 
                             }
@@ -415,7 +511,9 @@ public class MainUserActivity extends AppCompatActivity {
     }
 
     private void loadShops() {
-        //init list
+        /**
+         * init list
+         */
         shopList = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -423,21 +521,29 @@ public class MainUserActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //clear list before adding
+                        /**
+                         * clear list before adding
+                         */
                         shopList.clear();
                         for (DataSnapshot ds : snapshot.getChildren()){
                             ModelShop modelShop = ds.getValue(ModelShop.class);
 
                             String shopCity = ""+ds.child("city").getValue();
 
-
+                            /**
+                             * add
+                             */
                             shopList.add(modelShop);
                         }
 
-                        //setup adapter
+                        /**
+                         * setup adapter
+                         */
                         adapterShop = new AdapterShop(MainUserActivity.this, shopList);
 
-                        //set adapter to recyclerview
+                        /**
+                         * set adapter to recyclerview
+                         */
                         shopsRV.setAdapter(adapterShop);
 
                     }

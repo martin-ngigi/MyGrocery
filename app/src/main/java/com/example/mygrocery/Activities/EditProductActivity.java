@@ -50,6 +50,9 @@ public class EditProductActivity extends AppCompatActivity {
 
     private String productId;
 
+    /**
+     * Declare the views
+     */
     private ImageButton backBtnEp;
     private ImageView productIconIvEP;
     private EditText titleEtEP, descriptionEtEP, quantityEtEP, priceEtEP, discountPriceEtEP, discountNoteEtEP;
@@ -57,24 +60,36 @@ public class EditProductActivity extends AppCompatActivity {
     private SwitchCompat discountSwitchEP;
     private Button updateProductBtnEP;
 
-    //permission constants
+    /**
+     * permission constants
+     */
     private static  final int CAMERA_REQUEST_CODE=200;
     private static  final int STORAGE_REQUEST_CODE=300;
 
-    //IMAGE PICK CONSTANT
+    /**
+     * IMAGE PICK CONSTANT
+     */
     private static  final int IMAGE_PICK_GALLERY_CODE=400;
     private static  final int IMAGE_PICK_CAMERA_CODE=500;
 
-    //permission arrays
+    /**
+     * permission arrays
+     */
     private String[] cameraPermission;
     private String[] storagePermission;
-    //image picked Uri
+    /**
+     * image picked Uri
+     */
     private Uri image_uri;
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
-    //declare an instance of firebase
+    /**
+     * declare an instance of firebase
+     */
     private FirebaseAuth firebaseAuth;
 
 
@@ -83,10 +98,15 @@ public class EditProductActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_product);
 
-        //get id from intent
+        /**
+         * get id from intent
+         */
         productId = getIntent().getStringExtra("productId");
 
 
+        /**
+         * initialize the views
+         */
         backBtnEp = findViewById(R.id.backBtnEP);
         productIconIvEP = findViewById(R.id.productIconIvEP);
         titleEtEP = findViewById(R.id.titleEtEP);
@@ -99,39 +119,54 @@ public class EditProductActivity extends AppCompatActivity {
         discountSwitchEP = findViewById(R.id.discountSwitchEP);
         updateProductBtnEP = findViewById(R.id.updateProductBtnEP);
 
-        //unchecked, hide discountPriceEt, discountNote
+        /**
+         * unchecked, hide discountPriceEt, discountNote
+         */
         discountPriceEtEP.setVisibility(View.GONE);
         discountNoteEtEP.setVisibility(View.GONE);
 
-        //init permission array
+        /**
+         * init permission array
+         */
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-        // Initialize Firebase Auth
+        /**
+         *  Initialize Firebase Auth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
         loadProductDetails(); // to set on views
 
         dialog = new SpotsDialog.Builder().setContext(this).setCancelable(false).build();
         dialog.setTitle("Please wait ");
 
-        //if discountSwitch btn is checked, show discountPriceEt, discountNote
-        //if discountSwitch btn is checked, hide discountPriceEt, discountNote
+        /**
+         * if discountSwitch btn is checked, show discountPriceEt, discountNote
+         * if discountSwitch btn is checked, hide discountPriceEt, discountNote
+         */
         discountSwitchEP.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
-                    //checked,show discountPriceEt, discountNote
+                    /**
+                     * checked,show discountPriceEt, discountNote
+                     */
                     discountPriceEtEP.setVisibility(View.VISIBLE);
                     discountNoteEtEP.setVisibility(View.VISIBLE);
                 }
                 else {
-                    //unchecked, hide discountPriceEt, discountNote
+                    /**
+                     * unchecked, hide discountPriceEt, discountNote
+                     */
                     discountPriceEtEP.setVisibility(View.GONE);
                     discountNoteEtEP.setVisibility(View.GONE);
                 }
             }
         });
 
+        /**
+         * handle backBtnEp listener
+         */
         backBtnEp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +174,9 @@ public class EditProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle productIconIvEP listener
+         */
         productIconIvEP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +184,9 @@ public class EditProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle categoryEP listener
+         */
         categoryEP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,13 +194,18 @@ public class EditProductActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle updateProductBtnEP listener
+         */
         updateProductBtnEP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Flow
-                // 1 . input data
-                // 2. validate data
-                // 3. update data to db
+                /**
+                 * 1 . input data
+                 *2. validate data
+                 *  3. update data to db
+                 */
                 inputData();
             }
         });
@@ -167,13 +213,18 @@ public class EditProductActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * load products from database
+     */
     private void loadProductDetails() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid()).child("Products").child(productId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //get data
+                        /**
+                         * get data
+                         */
                         String productId = ""+snapshot.child("productId").getValue();
                         String productTitle = ""+snapshot.child("productTitle").getValue();
                         String productDescription = ""+snapshot.child("productDescription").getValue();
@@ -191,11 +242,15 @@ public class EditProductActivity extends AppCompatActivity {
                         double discountPriceDouble = Double.parseDouble(discountPrice);
                         double discountedPriceDouble = originalPriceDouble - discountPriceDouble;
 
-                        //set data to views
+                        /**
+                         * set data to views
+                         */
                         if (discountAvailable.equals("true")){
                             discountSwitchEP.setChecked(true);
 
-                            //checked, show discountPriceEt, discountNote
+                            /**
+                             * checked, show discountPriceEt, discountNote
+                             */
                             discountPriceEtEP.setVisibility(View.VISIBLE);
                             discountNoteEtEP.setVisibility(View.VISIBLE);
 
@@ -203,11 +258,16 @@ public class EditProductActivity extends AppCompatActivity {
                         else {
                             discountSwitchEP.setChecked(false);
 
-                            //checked, show discountPriceEt, discountNote
+                            /**
+                             * checked, show discountPriceEt, discountNote
+                             */
                             discountPriceEtEP.setVisibility(View.GONE);
                             discountNoteEtEP.setVisibility(View.GONE);
                         }
 
+                        /**
+                         * set data to UI
+                         */
                         titleEtEP.setText(productTitle);
                         descriptionEtEP.setText(productDescription);
                         categoryEP.setText(productCategory);
@@ -217,11 +277,17 @@ public class EditProductActivity extends AppCompatActivity {
                         discountPriceEtEP.setText(""+discountPrice);
 
                         try {
+                            /**
+                             * get image
+                             */
                             Picasso.get().load(productIcon)
                                     .placeholder(R.drawable.ic_baseline_add_shopping_cart_24_green)
                                     .into(productIconIvEP);
                         }
                         catch (Exception e){
+                            /**
+                             * handle error
+                             */
                             productIconIvEP.setImageResource(R.drawable.ic_baseline_add_shopping_cart_24_green);
                         }
 
@@ -238,7 +304,9 @@ public class EditProductActivity extends AppCompatActivity {
     private String productTitle, productDescription, productCategory, productQuantity, originalPrice, discountPrice, discountNote;
     private boolean discountAvailableSwitch = false;
     private void inputData() {
-        // 1 . input data
+        /**
+         * 1 . input data
+         */
         productTitle = titleEtEP.getText().toString().trim();
         productDescription = descriptionEtEP.getText().toString().trim();
         productCategory = categoryEP.getText().toString().trim();
@@ -246,31 +314,46 @@ public class EditProductActivity extends AppCompatActivity {
         originalPrice = priceEtEP.getText().toString().trim();
         discountAvailableSwitch = discountSwitchEP.isChecked(); //true or false
 
-        // 2. validate data
+        /**
+         *  2. validate data
+         *  productTitle is empty
+         */
         if (TextUtils.isEmpty(productTitle)){
             titleEtEP.setError("Please enter product title");
             titleEtEP.setFocusable(true);
             Toast.makeText(this, "Please product title", Toast.LENGTH_SHORT).show();
             return; //don't proceed further
         }
+        /**
+         *  descriptionEtEP is empty
+         */
         if (TextUtils.isEmpty(productDescription)){
             descriptionEtEP.setError("Please enter product description");
             descriptionEtEP.setFocusable(true);
             Toast.makeText(this, "Please product description", Toast.LENGTH_SHORT).show();
             return;//don't proceed further
         }
+        /**
+         *  categoryEP is empty
+         */
         if (TextUtils.isEmpty(productCategory)){
             categoryEP.setError("Please enter product category");
             categoryEP.setFocusable(true);
             Toast.makeText(this, "Please product category", Toast.LENGTH_SHORT).show();
             return;//don't proceed further
         }
+        /**
+         *  quantityEtEP is empty
+         */
         if (TextUtils.isEmpty(productQuantity)){
             quantityEtEP.setError("Please enter product quantity");
             quantityEtEP.setFocusable(true);
             Toast.makeText(this, "Please product quantity", Toast.LENGTH_SHORT).show();
             return;//don't proceed further
         }
+        /**
+         *  priceEtEP is empty
+         */
         if (TextUtils.isEmpty(originalPrice)){
             priceEtEP.setError("Please enter product price");
             priceEtEP.setFocusable(true);
@@ -278,7 +361,9 @@ public class EditProductActivity extends AppCompatActivity {
             return;//don't proceed further
         }
         if (discountAvailableSwitch){
-            //product is with discount
+            /**
+             * product is with discount
+             */
             discountPrice = discountPriceEtEP.getText().toString().trim();
             discountNote = discountNoteEtEP.getText().toString().trim();
 
@@ -297,19 +382,25 @@ public class EditProductActivity extends AppCompatActivity {
 
         }
         else {
-            //product is without discount
+            /**
+             * product is without discount
+             */
             discountPrice = "0";
             discountNote = "";
         }
 
-        // 3. update data to db
+        /**
+         * 3. update data to db
+         */
         updateProduct();
 
     }
 
     private void updateProduct() {
 
-        //show dialog
+        /**
+         * show dialog
+         */
         dialog.setMessage("Adding product...");
         dialog.show();
 
@@ -317,7 +408,9 @@ public class EditProductActivity extends AppCompatActivity {
         if (image_uri == null) {
             //upload without Image
 
-            //set data in hashmap to update
+            /**
+             * set data in hashmap to update
+             */
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("productTitle",""+productTitle);
             hashMap.put("productDescription",""+productDescription);
@@ -328,14 +421,18 @@ public class EditProductActivity extends AppCompatActivity {
             hashMap.put("discountNote",""+discountNote);
             hashMap.put("discountAvailable",""+discountAvailableSwitch);
 
-            //save to db
+            /**
+             * save to db
+             */
             DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
             ref.child(firebaseAuth.getUid()).child("Products").child(productId)
                     .updateChildren(hashMap)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
-                            //successfully updated
+                            /**
+                             * /successfully updated
+                             */
                             dialog.dismiss();
                             Toast.makeText(EditProductActivity.this, "Product updated successfully", Toast.LENGTH_SHORT).show();
 
@@ -344,7 +441,9 @@ public class EditProductActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //failed to update
+                            /**
+                             * failed to update
+                             */
                             dialog.dismiss();
                             Toast.makeText(EditProductActivity.this, "failed to update"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -353,25 +452,33 @@ public class EditProductActivity extends AppCompatActivity {
 
         }
         else {
-            //upload with Image
-
-            //first upload image to db
+            /**
+             * /upload with Image
+             *
+             *first upload image to db
+             */
             String filePathAndName = "product_images/"+""+productId;
-            //upload image
+            /**
+             * upload image
+             */
             StorageReference storageReference =  FirebaseStorage.getInstance().getReference(filePathAndName);
             storageReference.putFile(image_uri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-                            //get uri of uploaded image
+                            /**
+                             * get uri of uploaded image
+                             */
                             Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                             while (!uriTask.isSuccessful());
                             Uri downloadImageUri = uriTask.getResult();
 
                             if (uriTask.isSuccessful()){
 
-                                //set data in hashmap to update
+                                /**
+                                 * set data in hashmap to update
+                                 */
                                 HashMap<String, Object> hashMap = new HashMap<>();
                                 hashMap.put("productTitle",""+productTitle);
                                 hashMap.put("productDescription",""+productDescription);
@@ -383,14 +490,18 @@ public class EditProductActivity extends AppCompatActivity {
                                 hashMap.put("discountNote",""+discountNote);
                                 hashMap.put("discountAvailable",""+discountAvailableSwitch);
 
-                                //save to db
+                                /**
+                                 * /save to db
+                                 */
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
                                 ref.child(firebaseAuth.getUid()).child("Products").child(productId)
                                         .updateChildren(hashMap)
                                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                                             @Override
                                             public void onSuccess(Void unused) {
-                                                //successfully updated
+                                                /**
+                                                 * successfully updated
+                                                 */
                                                 dialog.dismiss();
                                                 Toast.makeText(EditProductActivity.this, "Product updated successfully", Toast.LENGTH_SHORT).show();
 
@@ -399,7 +510,9 @@ public class EditProductActivity extends AppCompatActivity {
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
                                             public void onFailure(@NonNull Exception e) {
-                                                //failed to update
+                                                /**
+                                                 * failed to update
+                                                 */
                                                 dialog.dismiss();
                                                 Toast.makeText(EditProductActivity.this, "failed to update"+e.getMessage(), Toast.LENGTH_SHORT).show();
 
@@ -413,7 +526,9 @@ public class EditProductActivity extends AppCompatActivity {
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            //failed to update
+                            /**
+                             * failed to update
+                             */
                             dialog.dismiss();
                             Toast.makeText(EditProductActivity.this, "failed to update"+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
@@ -428,10 +543,14 @@ public class EditProductActivity extends AppCompatActivity {
                 .setItems(Constants.productCategories, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //get picked category
+                        /**
+                         * get picked category
+                         */
                         String category = Constants.productCategories[which];
 
-                        //set picked category
+                        /**
+                         * set picked category
+                         */
                         categoryEP.setText(category);
                     }
                 })
@@ -439,7 +558,9 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     private void showImagePickDialog() {
-        //options to display in dialog
+        /**
+         * options to display in dialog
+         */
         String[] options ={"Camera"," Gallery"};
         //dialog
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -447,27 +568,41 @@ public class EditProductActivity extends AppCompatActivity {
                 .setItems(options, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //handle clicks
+                        /**
+                         * handle clicks
+                         */
                         if (which == 0){
-                            //camera clicked
+                            /**
+                             * camera clicked
+                             */
                             if (checkCameraPermission()){
-                                //camera permission allowed
+                                /**
+                                 * camera permission allowed
+                                 */
                                 pickFromCamera();
                             }
                             else {
-                                //camera permission not allowed
+                                /**
+                                 * camera permission not allowed
+                                 */
                                 requestCameraPermission();
                             }
                         }
                         else {
-                            //gallery clicked
+                            /**
+                             * gallery clicked
+                             */
                             if (checkStoragePermission()){
-                                //storage permission allowed
+                                /**
+                                 * storage permission allowed
+                                 */
                                 pickFromGallery();
 
                             }
                             else {
-                                //storage permission not allowed
+                                /**
+                                 * storage permission not allowed
+                                 */
                                 requestStoragePermission();
                             }
 
@@ -477,16 +612,20 @@ public class EditProductActivity extends AppCompatActivity {
     }
 
     private void pickFromGallery(){
-        //intent to pick image from gallery
+        /**
+         * intent to pick image from gallery
+         */
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_GALLERY_CODE);
     }
 
     private void pickFromCamera(){
-        //intent to pick image from camera
-
-        //using media store ro pick high/original quality image
+        /**
+         * intent to pick image from camera
+         *
+         * using media store ro pick high/original quality image
+         */
         ContentValues contentValues = new ContentValues();
         contentValues.put(MediaStore.Images.Media.TITLE, "Temp_Image Title");
         contentValues.put(MediaStore.Images.Media.DESCRIPTION, "Temp_Image Description");
@@ -498,15 +637,26 @@ public class EditProductActivity extends AppCompatActivity {
         startActivityForResult(intent, IMAGE_PICK_CAMERA_CODE);
     }
 
+    /**
+     * check permissions
+     * @return results
+     */
     private boolean checkStoragePermission(){
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
         return result;
     }
 
+    /**
+     * check permissions
+     */
     private void requestStoragePermission(){
         ActivityCompat.requestPermissions(this, storagePermission, STORAGE_REQUEST_CODE);
     }
 
+    /**
+     * check permissions
+     * @return
+     */
     private boolean checkCameraPermission(){
         boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == (PackageManager.PERMISSION_GRANTED);
         boolean result1 = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == (PackageManager.PERMISSION_GRANTED);
@@ -515,10 +665,19 @@ public class EditProductActivity extends AppCompatActivity {
         return result && result1;
     }
 
+    /**
+     * check permissions
+     */
     private void requestCameraPermission(){
         ActivityCompat.requestPermissions(this, cameraPermission, CAMERA_REQUEST_CODE);
     }
 
+    /**
+     * check permissions results
+     * @param requestCode check permissions results
+     * @param permissions check permissions results
+     * @param grantResults check permissions results
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode){
@@ -527,11 +686,15 @@ public class EditProductActivity extends AppCompatActivity {
                     boolean cameraAccepted= grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean storageAccepted= grantResults[1] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted && storageAccepted){
-                        //permission accepted
+                        /**
+                         * permission accepted
+                         */
                         pickFromCamera();
                     }
                     else {
-                        //permission denied
+                        /**
+                         * permission denied
+                         */
                         Toast.makeText(this, "Camera permissions are required...", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -542,11 +705,15 @@ public class EditProductActivity extends AppCompatActivity {
                 if (grantResults.length>0){
                     boolean storageAccepted= grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (storageAccepted){
-                        //permission accepted
+                        /**
+                         * permission accepted
+                         */
                         pickFromGallery();
                     }
                     else {
-                        //permission denied
+                        /**
+                         * permission denied
+                         */
                         Toast.makeText(this, "Storage permission is required...", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -557,17 +724,29 @@ public class EditProductActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
+    /**
+     * check permissions results
+     * @param requestCode check permissions results
+     * @param resultCode check permissions results
+     * @param data check permissions results
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (resultCode == RESULT_OK){
             if (requestCode == IMAGE_PICK_GALLERY_CODE){
-                //get picked image
+                /**
+                 * get picked image
+                 */
                 image_uri = data.getData();
-                //set to image view
+                /**
+                 * set to image view
+                 */
                 productIconIvEP.setImageURI(image_uri);
             }
             else if (requestCode == IMAGE_PICK_CAMERA_CODE){
-                //set to image view
+                /**
+                 * set to image view
+                 */
                 productIconIvEP.setImageURI(image_uri);
             }
         }
