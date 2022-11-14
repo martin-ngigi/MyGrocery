@@ -33,6 +33,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
 
     private String orderTo, orderId;
 
+    /** declare views
+     *
+     */
     private ImageButton backBtnOD, writeReviewBtn;
     private TextView orderIdTvOD, dateTvOD, orderStatusTvOD, shopNameTvOD, totalItemsTvOD, amountTvOD, addressTvOD;
     private RecyclerView itemsRVOD;
@@ -47,7 +50,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details);
 
-        //get passed values from AdapterOderUser
+        /**
+         * get passed values from AdapterOderUser
+         */
         Intent intent = getIntent();
         orderTo = intent.getStringExtra("orderTo"); //orderTo contains Id of the shop where we placed our order
         orderId = intent.getStringExtra("orderId");
@@ -69,6 +74,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
         loadOrderDetails();
         loadOrderItems();
 
+        /**
+         *  handle backBtnOD click listener
+         */
         backBtnOD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,10 +84,16 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         *  handle writeReviewBtn click listener
+         */
         writeReviewBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent1= new Intent(OrderDetailsUserActivity.this, WriteReviewActivity.class);
+                /**
+                 * passing shopuid to WriteReviewActivity
+                 */
                 intent1.putExtra("shopUid", orderTo); //passing shopuid to WriteReviewActivity
                 startActivity(intent1);
             }
@@ -87,8 +101,13 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * load Order Items
+     */
     private void loadOrderItems() {
-        //init list
+        /**
+         * init list
+         */
         orderedItemArrayList = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -102,13 +121,19 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
                             //add to list
                             orderedItemArrayList.add(modelOrderedItem);
                         }
-                        //all items added to list
-                        //set up adapter
+                        /**
+                         * all items added to list
+                         * set up adapter
+                         */
                         adapterOrderedItem = new AdapterOrderedItem(OrderDetailsUserActivity.this, orderedItemArrayList);
-                        //set adapter
+                        /**
+                         * set adapter
+                         */
                         itemsRVOD.setAdapter(adapterOrderedItem);
 
-                        //set item count
+                        /**
+                         * set item count
+                         */
                         totalItemsTvOD.setText(""+snapshot.getChildrenCount());
                     }
 
@@ -120,13 +145,17 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
     }
 
     private void loadOrderDetails() {
-        //get order details
+        /**
+         * get order details
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(orderTo).child("Orders").child(orderId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //get data
+                        /**
+                         * get data
+                         */
                         String orderBy = ""+snapshot.child("orderBy").getValue();
                         String orderCost = ""+snapshot.child("orderCost").getValue();
                         String orderId = ""+snapshot.child("orderId").getValue();
@@ -137,12 +166,16 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
                         String latitude = ""+snapshot.child("latitude").getValue();
                         String longitude = ""+snapshot.child("longitude").getValue();
 
-                        //convert timestamp to proper format
+                        /**
+                         * convert timestamp to proper format
+                         */
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(Long.parseLong(orderTime));
                         String formatedDate = DateFormat.format("dd/MM/yyyy hh:mm a", calendar).toString(); //eg 14/11/2021 5:36 PM
 
-                        //set delivery status colour
+                        /**
+                         * set delivery status colour
+                         */
                         if (orderStatus.equals("In Progress")){
                             orderStatusTvOD.setTextColor(getResources().getColor(R.color.blue));
                         }
@@ -153,7 +186,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
                             orderStatusTvOD.setTextColor(getResources().getColor(R.color.red));
                         }
 
-                        //set data
+                        /**
+                         * set data
+                         */
                         orderIdTvOD.setText(orderId);
                         orderStatusTvOD.setText(orderStatus);
                         amountTvOD.setText("Ksh "+orderCost+" [ Including delivery fee Ksh "+deliveryFee+" ]");
@@ -170,6 +205,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * get shop info
+     */
     private void loadShopInfo() {
         //get shop info
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -177,7 +215,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //get shopname
+                        /**
+                         * get shopname
+                         */
                         String shopName = ""+snapshot.child("shopName").getValue();
                         shopNameTvOD.setText(shopName);
                     }
@@ -193,7 +233,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
         double lat = Double.parseDouble(latitude);
         double lon = Double.parseDouble(longitude);
 
-        //find address, city, state
+        /**
+         * find address, city, state
+         */
         Geocoder geocoder;
         List<Address> addresses;
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -203,7 +245,9 @@ public class OrderDetailsUserActivity extends AppCompatActivity {
 
             String address = addresses.get(0).getAddressLine(0); //complete address
 
-            //set addresses
+            /**
+             * set addresses
+             */
             addressTvOD.setText(address);
 
 

@@ -48,13 +48,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
 
     private String orderBy, orderId;
 
+    /**
+     * Initialize views
+     */
     private ImageButton backBtnODS, mapBtnODS, editBtnODS;
     private TextView orderIdTvODS, dateTvODS, orderStatusTvODS, emailTvODS, phoneTvODS, totalItemsTvODS, amountTvODS, addressTvODS;
     private RecyclerView itemsRV_ODS;
     
     FirebaseAuth firebaseAuth;
 
-    //to open destination in map
+    /**
+     * to open destination in map
+     */
     String sourceLatitude, sourceLongitude, destinationLatitude, destinationLongitude;
 
     private ArrayList<ModelOrderedItem> orderedItemArrayList;
@@ -64,7 +69,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_details_seller);
 
-        //init views
+        /**
+         * init views
+         */
         backBtnODS = findViewById(R.id.backBtnODS);
         mapBtnODS = findViewById(R.id.mapBtnODS);
         editBtnODS = findViewById(R.id.editBtnODS);
@@ -79,20 +86,25 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         itemsRV_ODS = findViewById(R.id.itemsRV_ODS);
 
 
-        //get passed values from AdapterOderUser
+        /**
+         * get passed values from AdapterOderUser
+         */
         orderId = getIntent().getStringExtra("orderId");
         orderBy = getIntent().getStringExtra("orderBy"); //orderTo contains Id of the shop where we placed our order
 
         
         firebaseAuth = FirebaseAuth.getInstance();
-        
+
+        /**
+         * Invoke methods
+         */
         loadMyInfo();
         loadBuyerInfo();
         loadOrderDetails();
         loadOrderedItems();
 
         /**
-         *
+         * handle backBtnODS click listener
          */
         backBtnODS.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +114,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle mapBtnODS click listener
+         */
         mapBtnODS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +124,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * handle editBtnODS click listener
+         */
         editBtnODS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,9 +140,13 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
     private void editOrderStatusDialog() {
         //edit order status : "In Progress" ,"Completed", "Cancelled"
 
-        //options to display in the dialog
+        /**
+         * options to display in the dialog
+         */
         final String[] options = {"In Progress" ,"Completed", "Cancelled"};
-        //dialog
+        /**
+         * dialog
+         */
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Edit Order Details")
                 .setItems(options, new DialogInterface.OnClickListener() {
@@ -138,6 +160,10 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 .show();
     }
 
+    /**
+     *
+     * @param selectedOption returns String
+     */
     private void editOrderStatus(String selectedOption) {
         HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("orderStatus", ""+selectedOption);
@@ -158,20 +184,26 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        //failed updating status
+                        /**
+                         * failed updating status
+                         */
                         Toast.makeText(OrderDetailsSellerActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
     private void loadOrderDetails() {
-        //load detailed infor of this order based on id
+        /**
+         * load detailed infor of this order based on id
+         */
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid()).child("Orders").child(orderId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        //get order info
+                        /**
+                         * get order info
+                         */
                         String orderBy = ""+snapshot.child("orderBy").getValue();
                         String orderCost = ""+snapshot.child("orderCost").getValue();
                         String orderId = ""+snapshot.child("orderId").getValue();
@@ -182,12 +214,16 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String latitude = ""+snapshot.child("latitude").getValue();
                         String longitude = ""+snapshot.child("longitude").getValue();
 
-                        //convert timestamp
+                        /**
+                         * convert timestamp
+                         */
                         Calendar calendar = Calendar.getInstance();
                         calendar.setTimeInMillis(Long.parseLong(orderTime));
                         String dateFormatted = DateFormat.format("dd/MM/yyyy", calendar).toString();
 
-                        //set order status colours
+                        /**
+                         * set order status colours
+                         */
                         if (orderStatus.equals("In Progress")){
                            orderStatusTvODS.setTextColor(getResources().getColor(R.color.blue));
                         }
@@ -198,7 +234,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                             orderStatusTvODS.setTextColor(getResources().getColor(R.color.red));
                         }
 
-                        //set data
+                        /**
+                         * set data to ui
+                         */
                         orderIdTvODS.setText("OrderID: "+orderId);
                         amountTvODS.setText("Amount: Ksh"+orderCost);
                         orderStatusTvODS.setText(""+orderStatus);
@@ -216,13 +254,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
     }
 
     private void openMap() {
-        //saddr means source address
-        //daddr means destination address
+        /**
+         * saddr means source address
+         * daddr means destination address
+         */
         String address = "https://maps.google.com/maps?saddr="+sourceLatitude+","+sourceLongitude+"&daddr="+destinationLatitude+","+destinationLongitude;
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(address));
         startActivity(intent);
     }
 
+    /**
+     * load personal information
+     */
     private void loadMyInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(firebaseAuth.getUid())
@@ -240,6 +283,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * load buyers infor
+     */
     private void loadBuyerInfo() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
         ref.child(orderBy)
@@ -252,7 +298,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                         String email= ""+snapshot.child("email").getValue();
                         String phone= ""+snapshot.child("phone").getValue();
 
-                        //set infor
+                        /**
+                         * set infor
+                         */
                         emailTvODS.setText(email);
                         phoneTvODS.setText(phone);
                     }
@@ -264,11 +312,18 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     *
+     * @param latitude  is location
+     * @param longitude is location
+     */
     private void findAddress(String latitude, String longitude) {
         double lat = Double.parseDouble(latitude);
         double lon = Double.parseDouble(longitude);
 
-        //find address, city, state
+        /**
+         * find address, city, state
+         */
         Geocoder geocoder;
         List<Address> addresses;
         geocoder = new Geocoder(this, Locale.getDefault());
@@ -276,10 +331,14 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         try {
             addresses = geocoder.getFromLocation(lat, lon, 1);
 
-            //complete address
+            /**
+             * complete address
+             */
             String address = addresses.get(0).getAddressLine(0); //complete address
 
-            //set addresses
+            /**
+             * set addresses
+             */
             addressTvODS.setText(address);
         }
         catch (Exception e){
@@ -287,10 +346,15 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * load the products/items of order
+     */
     private void loadOrderedItems(){
         //load the products/items of order
 
-        //init list
+        /**
+         * init list
+         */
         orderedItemArrayList = new ArrayList<>();
 
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
@@ -298,20 +362,28 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
                 .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                //before adding data clear list
+                /**
+                 * before adding data clear list
+                 */
                 orderedItemArrayList.clear();
 
                 for (DataSnapshot ds : snapshot.getChildren()){
                     ModelOrderedItem modelOrderedItem = ds.getValue(ModelOrderedItem.class);
-                    //add to list
+                    /**
+                     * add to list
+                     */
                     orderedItemArrayList.add(modelOrderedItem);
                 }
-                //setup adapter
+                /**
+                 * setup adapter
+                 */
                 adapterOrderedItem = new AdapterOrderedItem(OrderDetailsSellerActivity.this, orderedItemArrayList);
                 //set adapter to our recyclerview
                 itemsRV_ODS.setAdapter(adapterOrderedItem);
 
-                //set total number of items/products in order
+                /**
+                 * set total number of items/products in order
+                 */
                 totalItemsTvODS.setText(""+snapshot.getChildrenCount());
             }
 
@@ -323,27 +395,42 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * prepare Notification Message
+     * @param orderId -> id of the order
+     * @param message - > message to be sent
+     */
     private void prepareNotificationMessage(String orderId, String message){
-        //when seller  changes order status ie In Progress, Completed, Cancelled .. send notification to buyer
+        /**
+         * when seller  changes order status ie In Progress, Completed, Cancelled .. send notification to buyer
+         */
 
-        //prepare data for notification
+        /**
+         * prepare data for notification
+         */
         String NOTIFICATION_TOPIC = "/topics/"+ Constants.FCM_TOPIC;
         String NOTIFICATION_TITLE = "Your Order "+orderId;
         String NOTIFICATION_MESSAGE = ""+message;
         String NOTIFICATION_TYPE = "OrderStatusChanged";
 
-        //prepare json (what to sen and where to send)
+        /**
+         * prepare json (what to sen and where to send
+         */
         JSONObject notificationJo = new JSONObject();
         JSONObject notificationBodyJo = new JSONObject();
         try {
-            //what to send
+            /**
+             * what to send
+             */
             notificationBodyJo.put("notificationType",NOTIFICATION_TYPE);
             notificationBodyJo.put("buyerUid",orderBy);
             notificationBodyJo.put("sellerUid",firebaseAuth.getUid());
             notificationBodyJo.put("orderId",orderId);
             notificationBodyJo.put("notificationTitle",NOTIFICATION_TITLE);
             notificationBodyJo.put("notificationMessage",NOTIFICATION_MESSAGE);
-            //where to send
+            /**
+             * where to send
+             */
             notificationJo.put("to",NOTIFICATION_TOPIC);
             notificationJo.put("data",notificationBodyJo);
 
@@ -355,24 +442,36 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
         sendFcmNotification(notificationJo);
     }
 
+    /**
+     * sendFcmNotification
+     * @param notificationJo -> what to be sent
+     */
     private void sendFcmNotification(JSONObject notificationJo) {
-        //send volley request
+        /**
+         * send volley request
+         */
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("https://fcm.googleapis.com/fcm/send", notificationJo, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                //notification sent
+                /**
+                 * notification sent
+                 */
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //notification failed
+                /**
+                 * notification failed
+                 */
 
             }
         }){
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                //put required headers
+                /**
+                 * put required headers
+                 */
                 Map<String, String> headers = new HashMap<>();
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", "key="+Constants.FCM_KEY);
@@ -381,7 +480,9 @@ public class OrderDetailsSellerActivity extends AppCompatActivity {
             }
         };
 
-        //unique the volley request
+        /**
+         * unique the volley request
+         */
         Volley.newRequestQueue(this).add(jsonObjectRequest);
     }
 
