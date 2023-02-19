@@ -52,31 +52,44 @@ import dmax.dialog.SpotsDialog;
 
 public class ProfileEditUserActivity extends AppCompatActivity implements LocationListener {
 
+    /**
+     * declare views
+     */
     private ImageButton backBtnPU, gpsBtnPU;
     ImageView profileIvPU;
     EditText nameEtPU,phoneEtPU,countryEtPU, stateEtPU, cityEtPU, addressEtPU, emailEtPU;
     Button updateBtnPU;
 
-    //permission constants
+    /**
+     * permission constants
+     */
     private static  final int LOCATION_REQUEST_CODE=100;
     private static  final int CAMERA_REQUEST_CODE=200;
     private static  final int STORAGE_REQUEST_CODE=300;
 
-    //IMAGE PICK CONSTANT
+    /**
+     * IMAGE PICK CONSTANT
+     */
     private static  final int IMAGE_PICK_GALLERY_CODE=400;
     private static  final int IMAGE_PICK_CAMERA_CODE=500;
 
-    //permission arrays
+    /**
+     * permission arrays
+     */
     private String[] locationPermission;
     private String[] cameraPermission;
     private String[] storagePermission;
     //image picked Uri
     private Uri image_uri;
 
-    //progressbar to display while registering user
+    /**
+     * progressbar to display while registering user
+     */
     AlertDialog dialog;
 
-    //declare an instance of firebase
+    /**
+     * /declare an instance of firebase
+     */
     private FirebaseAuth firebaseAuth;
 
     private double latitude = 0.0, longitude = 0.0;
@@ -89,6 +102,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit_user);
 
+        /**
+         * init views
+         */
         backBtnPU = findViewById(R.id.backBtnPU);
         backBtnPU = findViewById(R.id.backBtnPU);
         gpsBtnPU = findViewById(R.id.gpsBtnPU);
@@ -101,13 +117,16 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         addressEtPU = findViewById(R.id.addressEtPU);
         updateBtnPU = findViewById(R.id.updateBtnPU);
 
-        //init permission array
+        /**
+         * init permission array
+         */
         locationPermission = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
         cameraPermission = new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{ Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-
-        // Initialize Firebase Auth
+        /**
+         * Initialize Firebase Auth
+         */
         firebaseAuth = FirebaseAuth.getInstance();
         checkUser();
 
@@ -117,7 +136,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         backBtnPU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go back to previous activity
+                /**
+                 * go back to previous activity
+                 */
                 onBackPressed();
             }
         });
@@ -126,13 +147,17 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         gpsBtnPU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //detect current location
+                /**
+                 * detect current location
+                 */
                 if (checkLocationPermission()){
                 //already allowed
                  detectLocation();
                  }
                 else {
-                //not allowed
+                    /**
+                     * not allowed
+                     */
                  requestLocationPermission();
                  }
             }
@@ -149,7 +174,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         updateBtnPU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //begin update profile
+                /**
+                 * begin update profile
+                 */
                 inputData();
             }
         });
@@ -157,6 +184,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
 
     private String fullName, phoneNumber, country, state, city, address;
 
+    /**
+     * begin update profile
+     */
     private void inputData() {
         //input data
         fullName = nameEtPU.getText().toString().trim();
@@ -170,6 +200,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
 
     }
 
+    /**
+     * upDate Profile
+     */
     private void upDateProfile() {
         dialog.setMessage("Updating profile...");
         dialog.show();
@@ -177,7 +210,9 @@ public class ProfileEditUserActivity extends AppCompatActivity implements Locati
         if (image_uri == null) {
             //save infor without image
 
-            //setup data to save
+            /**
+             * setup data to save
+             */
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("name", fullName);
             hashMap.put("phone", phoneNumber);

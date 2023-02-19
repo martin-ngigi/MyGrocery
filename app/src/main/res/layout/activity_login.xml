@@ -103,103 +103,112 @@
                 android:layout_marginBottom="5dp"
                 android:text="Login" />
 
-            <TextView
-                android:id="@+id/architecture"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/loginBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:text=" Architecture"
-                android:textColor="@color/black" />
-
-            <Button
-                android:id="@+id/mvpBtn"
+            <RelativeLayout
+                android:id="@+id/relativeL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/architecture"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="Model View Presenter" />
+                android:visibility="gone"
+                android:layout_below="@id/loginBtn">
 
-            <TextView
-                android:id="@+id/unitTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/mvpBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:text=" Unit Tests"
-                android:textColor="@color/black" />
+                <TextView
+                    android:id="@+id/architecture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text=" Architecture"
+                    android:textColor="@color/black" />
 
-            <Button
-                android:id="@+id/simplecalcBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/unitTest"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="Simple Calc Unit Test" />
+                <Button
+                    android:id="@+id/mvpBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/architecture"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Model View Presenter" />
 
-            <Button
-                android:id="@+id/mockitoTestBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/simplecalcBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="Mockito Unit test" />
+                <TextView
+                    android:id="@+id/unitTest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mvpBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text=" Unit Tests"
+                    android:textColor="@color/black" />
 
-            <TextView
-                android:id="@+id/espressoUnitTest"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/mockitoTestBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="5dp"
-                android:text="Espresso Unit Test"
-                android:textColor="@color/black" />
+                <Button
+                    android:id="@+id/simplecalcBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/unitTest"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Simple Calc Unit Test" />
 
-            <Button
-                android:id="@+id/languageBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/espressoUnitTest"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="Language Espresso test" />
+                <Button
+                    android:id="@+id/mockitoTestBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/simplecalcBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Mockito Unit test" />
 
-            <Button
-                android:id="@+id/myEspressoBtn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/languageBtn"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="5dp"
-                android:text="My Espresso test" />
+                <TextView
+                    android:id="@+id/espressoUnitTest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/mockitoTestBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="5dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Espresso Unit Test"
+                    android:textColor="@color/black" />
+
+                <Button
+                    android:id="@+id/languageBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/espressoUnitTest"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="Language Espresso test" />
+
+                <Button
+                    android:id="@+id/myEspressoBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/languageBtn"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="My Espresso test" />
+
+            </RelativeLayout>
+
 
 
 
